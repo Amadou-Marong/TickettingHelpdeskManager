@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "../components/ui/Card";
 import AnimatedTransition from "../common/AnimatedTransition";
+import { Progress } from "../components/ui/Progress";
 
 export const StatCard = ({ title, value, description, icon, trend }) => {
   return (
@@ -120,7 +121,7 @@ const Dashboard = () => {
                     </div>
                     <span>38 tickets (27%)</span>
                   </div>
-                  {/* <Progress value={27} className="h-2" /> */}
+                  <Progress value={27} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
@@ -130,7 +131,7 @@ const Dashboard = () => {
                     </div>
                     <span>47 tickets (33%)</span>
                   </div>
-                  {/* <Progress value={33} className="h-2" /> */}
+                  <Progress value={33} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
@@ -140,7 +141,7 @@ const Dashboard = () => {
                     </div>
                     <span>28 tickets (20%)</span>
                   </div>
-                  {/* <Progress value={20} className="h-2" /> */}
+                  <Progress value={20} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
@@ -150,7 +151,7 @@ const Dashboard = () => {
                     </div>
                     <span>29 tickets (20%)</span>
                   </div>
-                  {/* <Progress value={20} className="h-2" /> */}
+                  <Progress value={20} className="h-2" />
                 </div>
               </div>
             </CardContent>
