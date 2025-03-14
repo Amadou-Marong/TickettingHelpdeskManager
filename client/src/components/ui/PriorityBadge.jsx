@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Badge } from '@/components/ui/badge';
 import { 
   AlertCircle, 
   AlertTriangle, 
@@ -9,29 +8,29 @@ import {
 import { Badge } from './Badge';
 
 const priorityConfig = {
-  'low': {
+  low: {
     label: 'Low',
-    color: 'bg-ticket-low/15 text-ticket-low border-ticket-low/20',
+    color: 'bg-green-100 text-green-800 border-green-200',
     icon: CircleDot
   },
-  'medium': {
+  medium: {
     label: 'Medium',
-    color: 'bg-ticket-medium/15 text-ticket-medium border-ticket-medium/20',
+    color: 'bg-yellow-100 text-yellow-800 border-yellow-200',
     icon: ArrowUp
   },
-  'high': {
+  high: {
     label: 'High',
-    color: 'bg-ticket-high/15 text-ticket-high border-ticket-high/20',
+    color: 'bg-orange-100 text-orange-800 border-orange-200',
     icon: AlertTriangle
   },
-  'urgent': {
+  urgent: {
     label: 'Urgent',
-    color: 'bg-ticket-urgent/15 text-ticket-urgent border-ticket-urgent/20',
+    color: 'bg-red-100 text-red-800 border-red-200',
     icon: AlertCircle
   }
 };
 
-const PriorityBadge = ({ priority, className, showIcon = true }) => {
+const PriorityBadge = ({ priority, className = '', showIcon = true }) => {
   const config = priorityConfig[priority];
   const Icon = config.icon;
   

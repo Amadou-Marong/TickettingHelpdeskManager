@@ -1,15 +1,32 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Card, CardTitle } from "./components/ui/Card"
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
 
+
+const AppContent = () => {
+    return (
+      <div>
+        <Routes>
+          <Route 
+            path="/"
+            element={<Dashboard />}
+          />
+          <Route 
+            path="/login"
+            element={<Login />}
+          />
+        </Routes>
+      </div>
+    )
+}
+
 function App() {
 
   return (
-    <>
-      {/* <Login /> */}
-    
-      <Dashboard />
-    </>
+    <Router>
+        <AppContent />
+    </Router>
   )
 }
 

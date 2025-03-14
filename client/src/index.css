@@ -1,2 +1,44 @@
 @import 'tailwindcss';
 
+@layer base {
+  
+}
+
+@layer components {
+  .ticket-low {
+    @apply bg-green-500
+  }
+
+  body {
+    @apply bg-gray-100
+  }
+
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md rounded-xl border border-white/20 shadow-md;
+  }
+  
+  .glass-panel-hover {
+    @apply hover:shadow-lg transition-shadow duration-300;
+  }
+  
+  .neo-button {
+    @apply py-2 px-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  } */
+
+  .section-title {
+    @apply text-2xl font-medium tracking-tight mb-6;
+  }
+
+  .ticket-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5;
+  }
+
+  /* .input-field {
+    @apply w-full rounded-lg border-input focus:ring-2 focus:ring-primary/50 transition-all duration-200;
+  } */
+  
+}

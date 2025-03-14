@@ -35,7 +35,7 @@ const TicketCard = ({ ticket }) => {
             <span>#{ticket.id.substring(0, 8)}</span>
             {ticket.status === 'escalated' && (
               <div className="flex items-center text-status-escalated ml-1">
-                {/* <CornerUpRight className="h-3 w-3 mr-0.5" /> */}
+                <CornerUpRight className="h-3 w-3 mr-0.5" />
                 <span>Escalated</span>
               </div>
             )}
@@ -45,15 +45,15 @@ const TicketCard = ({ ticket }) => {
       </CardHeader>
       
       <CardContent className="p-4 pt-0">
-        <p className="text-sm text-muted-foreground line-clamp-2 min-h-[40px]">
+        <p className="text-sm text-gray-500 line-clamp-2 min-h-[40px]">
           {ticket.description}
         </p>
       </CardContent>
       
-      <CardFooter className="px-4 py-3 border-t bg-muted/20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <CardFooter className="px-4 py-3 border-t border-gray-300 bg-muted/20 flex items-center justify-between">
+        <div className="flex items-center gap-2 mt-4">
           <StatusBadge status={ticket.status} />
-          <div className="flex items-center text-xs text-muted-foreground">
+          <div className="flex items-center text-xs text-gray-600">
             <MessageSquare className="h-3 w-3 mr-1" />
             {ticket.commentsCount}
           </div>

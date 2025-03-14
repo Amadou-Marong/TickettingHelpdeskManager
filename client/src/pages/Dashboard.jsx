@@ -61,7 +61,8 @@ const Dashboard = () => {
 
   return (
     <AnimatedTransition>
-      <div className="space-y-6 p-6 md:p-8 bg-gray-100 h-screen">
+      {/* <div className="space-y-6 p-6 md:p-8 bg-gray-100 h-full"> */}
+      <div className="space-y-6 p-6 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
@@ -130,7 +131,7 @@ const Dashboard = () => {
                     <TabsTrigger value="week">Week</TabsTrigger>
                     <TabsTrigger value="month">Month</TabsTrigger>
                   </TabsList>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-gray-500">
                     <BarChart3 className="h-4 w-4 inline mr-1" />
                     Statistics
                   </div>
