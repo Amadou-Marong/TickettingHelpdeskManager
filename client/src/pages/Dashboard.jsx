@@ -1,4 +1,4 @@
-import { BarChart3, CheckCircle2, Clock, Tag, ThumbsUp, Ticket } from "lucide-react";
+import { BarChart3, CheckCircle2, Clock, Tag, ThumbsUp, Ticket, User } from "lucide-react";
 import Button from "../components/ui/Button";
 import {
   Card,
@@ -11,10 +11,14 @@ import AnimatedTransition from "../common/AnimatedTransition";
 import { Progress } from "../components/ui/Progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/Tabs";
 import StatusBadge from "../components/ui/StatusBadge";
+import { mockTickets } from "../data/mockData";
+import TicketCard from "../components/tickets/TicketCard";
+
+
 
 export const StatCard = ({ title, value, description, icon, trend }) => {
   return (
-    <Card className="glass-panel glass-panel-hover border">
+    <Card className="glass-panel glass-panel-hover border hover:shadow-md hover:shadow-blue-500/50">
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <div className="h-8 w-8 rounded-full bg-blue-200 flex items-center justify-center text-blue-600">
@@ -40,6 +44,21 @@ export const StatCard = ({ title, value, description, icon, trend }) => {
 };
 
 const Dashboard = () => {
+
+    const recentTickets = mockTickets.slice(0, 3).map((ticket) => ({
+        id: ticket.id,
+        title: ticket.title,
+        description: ticket.description,
+        status: ticket.status,
+        priority: ticket.priority,
+        category: ticket.category,
+        createdAt: new Date(ticket.createdAt),
+        updatedAt: new Date(ticket.updatedAt),
+        assignedTo: ticket.assignedTo,
+        createdBy: ticket.createdBy,
+        commentsCount: ticket.commentsCount
+    }));
+
   return (
     <AnimatedTransition>
       <div className="space-y-6 p-6 md:p-8 bg-gray-100 h-screen">
@@ -334,6 +353,107 @@ const Dashboard = () => {
                     <span>29 tickets (20%)</span>
                   </div>
                   <Progress value={20} className="h-2" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        <div className="grid gap-4 md:grid-cols-12">
+          <Card className="glass-panel border md:col-span-8">
+            <CardHeader>
+              <CardTitle>Recent Tickets</CardTitle>
+              <CardDescription>
+                Recently created or updated tickets
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {recentTickets.map((ticket) => (
+                  <TicketCard key={ticket.id} ticket={ticket} />
+                ))}
+              </div>
+              <div className="mt-4 text-center">
+                <Button 
+                  variant="outline" 
+                //   onClick={() => navigate('/tickets')}
+                >
+                  View All Tickets
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="glass-panel border md:col-span-4">
+            <CardHeader>
+              <CardTitle>Team Performance</CardTitle>
+              <CardDescription>
+                Support agent statistics
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="h-9 w-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                      <User className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">John Doe</p>
+                      <p className="text-xs text-muted-foreground">Support Level 2</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">24 tickets</p>
+                    <p className="text-xs text-green-600">95% satisfaction</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="h-9 w-9 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-3">
+                      <User className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">Jane Smith</p>
+                      <p className="text-xs text-muted-foreground">Support Level 3</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">18 tickets</p>
+                    <p className="text-xs text-green-600">98% satisfaction</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="h-9 w-9 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3">
+                      <User className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">Alex Johnson</p>
+                      <p className="text-xs text-muted-foreground">Support Level 1</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">31 tickets</p>
+                    <p className="text-xs text-green-600">92% satisfaction</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="h-9 w-9 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mr-3">
+                      <User className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">Sarah Lee</p>
+                      <p className="text-xs text-muted-foreground">Support Level 2</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium">15 tickets</p>
+                    <p className="text-xs text-green-600">97% satisfaction</p>
+                  </div>
                 </div>
               </div>
             </CardContent>
