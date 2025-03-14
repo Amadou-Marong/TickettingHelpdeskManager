@@ -10,6 +10,7 @@ import {
 import AnimatedTransition from "../common/AnimatedTransition";
 import { Progress } from "../components/ui/Progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/Tabs";
+import StatusBadge from "../components/ui/StatusBadge";
 
 export const StatCard = ({ title, value, description, icon, trend }) => {
   return (
@@ -121,7 +122,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="open" className="mr-2" /> */}
+                            <StatusBadge status="open" className="mr-2" />
                             <span>Open</span>
                           </div>
                           <span>15 tickets (25%)</span>
@@ -131,7 +132,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="in-progress" className="mr-2" /> */}
+                            <StatusBadge status="in-progress" className="mr-2" />
                             <span>In Progress</span>
                           </div>
                           <span>28 tickets (47%)</span>
@@ -141,7 +142,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="on-hold" className="mr-2" /> */}
+                            <StatusBadge status="on-hold" className="mr-2" />
                             <span>On Hold</span>
                           </div>
                           <span>8 tickets (13%)</span>
@@ -151,7 +152,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="escalated" className="mr-2" /> */}
+                            <StatusBadge status="escalated" className="mr-2" />
                             <span>Escalated</span>
                           </div>
                           <span>5 tickets (8%)</span>
@@ -161,7 +162,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="resolved" className="mr-2" /> */}
+                            <StatusBadge status="resolved" className="mr-2" />
                             <span>Resolved</span>
                           </div>
                           <span>4 tickets (7%)</span>
@@ -177,7 +178,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="open" className="mr-2" /> */}
+                            <StatusBadge status="open" className="mr-2" />
                             <span>Open</span>
                           </div>
                           <span>37 tickets (26%)</span>
@@ -187,7 +188,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="in-progress" className="mr-2" /> */}
+                            <StatusBadge status="in-progress" className="mr-2" />
                             <span>In Progress</span>
                           </div>
                           <span>63 tickets (44%)</span>
@@ -197,7 +198,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="on-hold" className="mr-2" /> */}
+                            <StatusBadge status="on-hold" className="mr-2" />
                             <span>On Hold</span>
                           </div>
                           <span>12 tickets (8%)</span>
@@ -207,7 +208,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="escalated" className="mr-2" /> */}
+                            <StatusBadge status="escalated" className="mr-2" />
                             <span>Escalated</span>
                           </div>
                           <span>16 tickets (11%)</span>
@@ -217,7 +218,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="resolved" className="mr-2" /> */}
+                            <StatusBadge status="resolved" className="mr-2" />
                             <span>Resolved</span>
                           </div>
                           <span>14 tickets (10%)</span>
@@ -233,7 +234,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="open" className="mr-2" /> */}
+                            <StatusBadge status="open" className="mr-2" />
                             <span>Open</span>
                           </div>
                           <span>83 tickets (19%)</span>
@@ -243,7 +244,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="in-progress" className="mr-2" /> */}
+                            <StatusBadge status="in-progress" className="mr-2" />
                             <span>In Progress</span>
                           </div>
                           <span>142 tickets (33%)</span>
@@ -253,7 +254,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="on-hold" className="mr-2" /> */}
+                            <StatusBadge status="on-hold" className="mr-2" />
                             <span>On Hold</span>
                           </div>
                           <span>38 tickets (9%)</span>
@@ -263,7 +264,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="escalated" className="mr-2" /> */}
+                            <StatusBadge status="escalated" className="mr-2" />
                             <span>Escalated</span>
                           </div>
                           <span>24 tickets (6%)</span>
@@ -273,7 +274,7 @@ const Dashboard = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <div className="flex items-center">
-                            {/* <StatusBadge status="resolved" className="mr-2" /> */}
+                            <StatusBadge status="resolved" className="mr-2" />
                             <span>Resolved</span>
                           </div>
                           <span>145 tickets (34%)</span>
