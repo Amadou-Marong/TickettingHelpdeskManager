@@ -1,4 +1,4 @@
-import { BarChart3, CheckCircle2, Clock, ThumbsUp, Ticket } from "lucide-react";
+import { BarChart3, CheckCircle2, Clock, Tag, ThumbsUp, Ticket } from "lucide-react";
 import Button from "../components/ui/Button";
 import {
   Card,
@@ -298,7 +298,7 @@ const Dashboard = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <div className="flex items-center">
-                      {/* <Tag className="h-4 w-4 mr-2 text-blue-600" /> */}
+                      <Tag className="h-4 w-4 mr-2 text-blue-600" />
                       <span>Hardware Issues</span>
                     </div>
                     <span>38 tickets (27%)</span>
@@ -308,7 +308,7 @@ const Dashboard = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <div className="flex items-center">
-                      {/* <Tag className="h-4 w-4 mr-2 text-purple-600" /> */}
+                      <Tag className="h-4 w-4 mr-2 text-purple-600" />
                       <span>Software Issues</span>
                     </div>
                     <span>47 tickets (33%)</span>
@@ -318,7 +318,7 @@ const Dashboard = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <div className="flex items-center">
-                      {/* <Tag className="h-4 w-4 mr-2 text-green-600" /> */}
+                      <Tag className="h-4 w-4 mr-2 text-green-600" />
                       <span>Network Issues</span>
                     </div>
                     <span>28 tickets (20%)</span>
@@ -328,7 +328,7 @@ const Dashboard = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <div className="flex items-center">
-                      {/* <Tag className="h-4 w-4 mr-2 text-amber-600" /> */}
+                      <Tag className="h-4 w-4 mr-2 text-amber-600" />
                       <span>Access Requests</span>
                     </div>
                     <span>29 tickets (20%)</span>
