@@ -1,6 +1,5 @@
 import TicketList from "../components/tickets/TicketList"
 import Button from "../components/ui/Button";
-import { useTheme } from "../contexts/ThemeContext";
 import { mockTickets } from "../data/mockData"
 import { useNavigate } from "react-router-dom"
 
@@ -22,12 +21,11 @@ const Tickets = () => {
     commentsCount: ticket.commentsCount
   }));
   
-  const {theme, toggleTheme} = useTheme();
 
   return (
     <div className="p-6 md:p-8">
         <TicketList tickets={formattedTickets} onCreateTicket={() => navigate('/')}/>     
-        <Button onClick={toggleTheme}>Toggle</Button>
+        
     </div>
   )
 }
