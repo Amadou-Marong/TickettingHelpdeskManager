@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @layer base {
-  
+  body {
+    @apply font-sans text-gray-900
+  }
 }
 
 @layer components {
@@ -41,4 +45,6 @@
     @apply w-full rounded-lg border-input focus:ring-2 focus:ring-primary/50 transition-all duration-200;
   } */
   
+
+
 }
