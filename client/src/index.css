@@ -4,8 +4,9 @@
 
 @layer base {
   body {
-    @apply font-sans text-gray-900
+    @apply font-sans text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900
   }
+
 }
 
 @layer components {
@@ -13,9 +14,27 @@
     @apply bg-green-500
   }
 
-  body {
-    @apply bg-gray-100
+  .ticket-medium {
+    @apply bg-yellow-500
   }
+
+  .ticket-high {
+    @apply bg-red-500
+  }
+
+  .ticket-escalated {
+    @apply bg-orange-500
+  }
+
+  .ticket-urgent {
+    @apply bg-red-500
+  }
+  
+
+  body {
+    @apply font-sans text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900
+  }
+
 
   .glass-panel {
     @apply bg-white/80 backdrop-blur-md rounded-xl border border-white/20 shadow-md;
