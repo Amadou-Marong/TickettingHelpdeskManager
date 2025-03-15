@@ -375,7 +375,8 @@ const Dashboard = () => {
               </div>
               <div className="mt-4 text-center">
                 <Button 
-                  variant="outline" 
+                  variant="outline"
+                  className="text-black" 
                 //   onClick={() => navigate('/tickets')}
                 >
                   View All Tickets
