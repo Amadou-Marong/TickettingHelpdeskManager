@@ -1,16 +1,18 @@
 import { useState } from "react";
 import AnimatedTransition from "../../common/AnimatedTransition";
-import { TabsList, Tabs, TabsTrigger } from "../ui/Tabs";
+import { TabsList, Tabs, TabsTrigger, TabsContent } from "../ui/Tabs";
 import Button from "../ui/Button";
 import TicketCard from "./TicketCard";
 import { ChevronDown, Filter, Plus, Search } from "lucide-react";
-import Input from "../ui/input";
+// import Input from "../ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/DropdownMenu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/Select";
+import { Input } from "../ui/input";
 
 const TicketList = ({ tickets, onCreateTicket }) => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -48,6 +50,7 @@ const TicketList = ({ tickets, onCreateTicket }) => {
               className="pl-8 w-full"
             />
           </div>
+
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -64,7 +67,8 @@ const TicketList = ({ tickets, onCreateTicket }) => {
                 <DropdownMenuItem>Urgent Priority</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* <Select>
+            
+            <Select>
               <SelectTrigger className="w-full sm:w-[120px]">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
@@ -74,9 +78,85 @@ const TicketList = ({ tickets, onCreateTicket }) => {
                 <SelectItem value="priority">Priority</SelectItem>
                 <SelectItem value="status">Status</SelectItem>
               </SelectContent>
-            </Select> */}
+            </Select>
           </div>
         </div>
+
+        <Tabs defaultValue="all" value={selectedTab} onValueChange={setSelectedTab}>
+          <TabsList className="grid grid-cols-5 w-full sm:w-auto">
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="open">Open</TabsTrigger>
+            <TabsTrigger value="in-progress">In Progress</TabsTrigger>
+            <TabsTrigger value="escalated">Escalated</TabsTrigger>
+            <TabsTrigger value="closed">Closed</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="all" className="mt-6">
+            <div className="ticket-grid">
+              {filteredTickets.map((ticket) => (
+                <TicketCard key={ticket.id} ticket={ticket} />
+              ))}
+            </div>
+            {filteredTickets.length === 0 && (
+              <div className="text-center p-8">
+                <p className="text-muted-foreground">No tickets found.</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="open" className="mt-6">
+            <div className="ticket-grid">
+              {filteredTickets.map((ticket) => (
+                <TicketCard key={ticket.id} ticket={ticket} />
+              ))}
+            </div>
+            {filteredTickets.length === 0 && (
+              <div className="text-center p-8">
+                <p className="text-muted-foreground">No open tickets found.</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="in-progress" className="mt-6">
+            <div className="ticket-grid">
+              {filteredTickets.map((ticket) => (
+                <TicketCard key={ticket.id} ticket={ticket} />
+              ))}
+            </div>
+            {filteredTickets.length === 0 && (
+              <div className="text-center p-8">
+                <p className="text-muted-foreground">No in-progress tickets found.</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="escalated" className="mt-6">
+            <div className="ticket-grid">
+              {filteredTickets.map((ticket) => (
+                <TicketCard key={ticket.id} ticket={ticket} />
+              ))}
+            </div>
+            {filteredTickets.length === 0 && (
+              <div className="text-center p-8">
+                <p className="text-muted-foreground">No escalated tickets found.</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="closed" className="mt-6">
+            <div className="ticket-grid">
+              {filteredTickets.map((ticket) => (
+                <TicketCard key={ticket.id} ticket={ticket} />
+              ))}
+            </div>
+            {filteredTickets.length === 0 && (
+              <div className="text-center p-8">
+                <p className="text-muted-foreground">No closed tickets found.</p>
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
+
       </div>
     </AnimatedTransition>
   );

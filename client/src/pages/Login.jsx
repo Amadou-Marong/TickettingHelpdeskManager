@@ -1,9 +1,10 @@
 
 import { useState } from "react";
 import { LogIn, Mail, Lock } from "lucide-react";
-import Input from "../components/ui/input";
+// import Input from "../components/ui/input";
 import Button from "../components/ui/Button";
 import Label from "../components/ui/Label";
+import { Input } from "../components/ui/input";
 // import { Link } from "react-router-dom";
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -22,11 +23,11 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input type="text" id="email" value={email} onChange={(e) => setEmail(e.targer.value)}/>
+            <Input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input type="password" value={password} id="password" onChange={(e) => setPassword(e.targer.value)}/>
+            <Input type="password" value={password} id="password" onChange={(e) => setPassword(e.target.value)}/>
           </div>
           <Button type="submit">Submit</Button>
           <p className="text-center text-gray-600 text-sm cursor-pointer hover:text-blue-500">
