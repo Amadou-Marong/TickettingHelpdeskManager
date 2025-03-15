@@ -3,7 +3,21 @@ import { Card, CardTitle } from "./components/ui/Card"
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
 import Tickets from "./pages/Tickets"
+import NavBar from "./components/Layout/NavBar"
 
+
+const Layout = ({ children }) => {
+  return (
+    <>
+    <NavBar />
+      {/* <div className="flex min-h-screen"> */}
+          <main>
+              {children}
+          </main>
+      {/* </div> */}
+    </>
+  )
+}
 
 const AppContent = () => {
     return (
@@ -11,11 +25,11 @@ const AppContent = () => {
         <Routes>
           <Route 
             path="/"
-            element={<Dashboard />}
+            element={<Layout> <Dashboard /> </Layout>}
           />
           <Route 
             path="/tickets"
-            element={<Tickets />}
+            element={<Layout> <Tickets /> </Layout>}
           />
           <Route 
             path="/login"

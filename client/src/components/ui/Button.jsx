@@ -8,6 +8,7 @@ const variantStyles = {
   success: 'bg-green-600 text-white hover:bg-green-700',
   danger: 'bg-red-600 text-white hover:bg-red-700',
   outline: 'border border-gray-300 text-gray-700 bg-transparent shadow-md hover:bg-gray-100',
+  ghost: 'bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-100',
 };
 
 // Button component
