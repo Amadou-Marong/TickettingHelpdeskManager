@@ -1,10 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Card, CardTitle } from "./components/ui/Card"
 import Dashboard from "./pages/Dashboard"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Login from "./pages/Login"
 import Tickets from "./pages/Tickets"
 import NavBar from "./components/Layout/NavBar"
+import { AuthProvider } from "./contexts/AuthContext"
+import { Toaster } from "./components/ui/Toaster"
 
+const queryClient = new QueryClient();
 
 const Layout = ({ children }) => {
   return (
@@ -21,7 +25,7 @@ const Layout = ({ children }) => {
 
 const AppContent = () => {
     return (
-      <div>
+      <Router>
         <Routes>
           <Route 
             path="/"
@@ -36,16 +40,19 @@ const AppContent = () => {
             element={<Login />}
           />
         </Routes>
-      </div>
+      </Router>
     )
 }
 
 function App() {
 
   return (
-    <Router>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Toaster />
         <AppContent />
-    </Router>
+      </AuthProvider>
+    </QueryClientProvider>
   )
 }
 

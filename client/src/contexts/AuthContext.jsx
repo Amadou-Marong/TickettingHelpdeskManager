@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useToast } from "../hooks/useToast";
 import { hasPermission, mockUsers } from "../data/authMockData";
 
@@ -104,4 +104,12 @@ export const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     )
+}
+
+export const useAuth = () => {
+    const context = useContext(AuthContext);
+    if (context === undefined) {
+        throw new Error("useAuth must be used within a AuthProvider");
+    }
+    return context;
 }

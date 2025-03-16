@@ -20,8 +20,8 @@ const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
     "data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full";
   const variantClass =
     variant === "destructive"
-      ? "destructive group border-destructive bg-destructive text-destructive-foreground"
-      : "border bg-background text-foreground";
+      ? "destructive group border-gray-200 bg-red-500 text-gray-50"
+      : "border bg-gray-100 text-gray-900";
 
   return (
     <ToastPrimitives.Root

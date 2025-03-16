@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/Tabs"
 import StatusBadge from "../components/ui/StatusBadge";
 import { mockTickets } from "../data/mockData";
 import TicketCard from "../components/tickets/TicketCard";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -44,6 +45,7 @@ export const StatCard = ({ title, value, description, icon, trend }) => {
 };
 
 const Dashboard = () => {
+  const navigate = useNavigate();
 
     const recentTickets = mockTickets.slice(0, 3).map((ticket) => ({
         id: ticket.id,
@@ -377,7 +379,7 @@ const Dashboard = () => {
                 <Button 
                   variant="outline"
                   className="text-black" 
-                //   onClick={() => navigate('/tickets')}
+                  onClick={() => navigate('/tickets')}
                 >
                   View All Tickets
                 </Button>
