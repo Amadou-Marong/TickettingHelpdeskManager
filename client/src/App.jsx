@@ -10,6 +10,8 @@ import { Toaster } from "./components/ui/Toaster"
 import Sidebar from "./components/Layout/Sidebar"
 import { Heading1 } from "lucide-react"
 import { useState } from "react"
+import TicketDetail from "./pages/TicketDetail"
+import Unauthorized from "./pages/Unauthorized"
 
 const queryClient = new QueryClient();
 
@@ -35,10 +37,15 @@ const AppContent = () => {
     return (
       <Router>
         <Routes>
-          <Route 
-            path="/"
-            element={<h1>Hello Welcome</h1>}
-          />
+          {/* Public routes */}
+          {/* <Route path="/" element={<Index />} /> */}
+          <Route path="/" element={<h1>Hello Welcome</h1>}/>
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/register" element={<Register />} /> */}
+          <Route path="/unauthorized" element={<Layout><Unauthorized /></Layout>} />
+
+
+          {/* Protected Routes */}
           <Route 
             path="/dashboard"
             element={<Layout> <Dashboard /> </Layout>}
@@ -49,7 +56,7 @@ const AppContent = () => {
           />
           <Route 
             path="/tickets/:id"
-            element={<Layout> <h2>Ticket Detail</h2> </Layout>}
+            element={<Layout> <TicketDetail /> </Layout>}
           />
           <Route 
             path="/login"

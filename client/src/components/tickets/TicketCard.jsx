@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { 
   Calendar, 
   Clock, 
@@ -12,6 +11,7 @@ import PriorityBadge from '../ui/PriorityBadge';
 import StatusBadge from '../ui/StatusBadge';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { formatDistanceToNow } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const TicketCard = ({ ticket }) => {
   const navigate = useNavigate();
@@ -23,7 +23,10 @@ const TicketCard = ({ ticket }) => {
   return (
     <Card 
       className="glass-panel glass-panel-hover overflow-hidden cursor-pointer transform transition-all hover:-translate-y-1 border"
-      onClick={() => navigate(`/tickets/`)}
+      onClick={() => {
+        console.log("Navigating to:", `/tickets/${ticket?.id}`);
+        navigate(`/tickets/${ticket?.id}`);
+      }}
     >
       <CardHeader className="p-4 pb-2 flex flex-row items-start justify-between">
         <div className="space-y-1">
