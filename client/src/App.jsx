@@ -9,18 +9,21 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { Toaster } from "./components/ui/Toaster"
 import Sidebar from "./components/Layout/Sidebar"
 import { Heading1 } from "lucide-react"
+import { useState } from "react"
 
 const queryClient = new QueryClient();
 
 const Layout = ({ children }) => {
   const { user } = useAuth();
+  const [sidebarExpanded, setSidebarExpanded] = useState(false)
 
   return (
     <>
       <NavBar />
       <div className="flex min-h-screen">
           <Sidebar />
-          <main>
+          <main className={`transition-all duration-300 flex-1 ${
+          sidebarExpanded} ? 'ml-56' : 'ml-20'`}>
               {children}
           </main>
       </div>
@@ -43,6 +46,10 @@ const AppContent = () => {
           <Route 
             path="/tickets"
             element={<Layout> <Tickets /> </Layout>}
+          />
+          <Route 
+            path="/tickets/:id"
+            element={<Layout> <h2>Ticket Detail</h2> </Layout>}
           />
           <Route 
             path="/login"

@@ -11,10 +11,6 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/Card';
 import PriorityBadge from '../ui/PriorityBadge';
 import StatusBadge from '../ui/StatusBadge';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
-// import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-// import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-// import StatusBadge from '@/components/ui/StatusBadge';
-// import PriorityBadge from '@/components/ui/PriorityBadge';
 import { formatDistanceToNow } from 'date-fns';
 
 const TicketCard = ({ ticket }) => {
@@ -27,7 +23,7 @@ const TicketCard = ({ ticket }) => {
   return (
     <Card 
       className="glass-panel glass-panel-hover overflow-hidden cursor-pointer transform transition-all hover:-translate-y-1 border"
-    //   onClick={() => navigate(`/tickets/${ticket.id}`)}
+      onClick={() => navigate(`/tickets/`)}
     >
       <CardHeader className="p-4 pb-2 flex flex-row items-start justify-between">
         <div className="space-y-1">
