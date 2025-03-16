@@ -23,7 +23,7 @@ import { Badge } from "../ui/Badge";
 
 const NavBar = () => {
   return (
-    <nav className="h-16 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-30 w-full">
+    <nav className="h-16 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 w-full">
       <div className="flex h-full items-center justify-between px-4 md:px-6">
         <div className="hidden md:flex items-center gap-6 lg:gap-10 flex-1">
           <div className="relative w-full max-w-md">

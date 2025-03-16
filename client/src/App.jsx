@@ -4,9 +4,10 @@ import Dashboard from "./pages/Dashboard"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Login from "./pages/Login"
 import Tickets from "./pages/Tickets"
-import NavBar from "./components/Layout/NavBar"
+import NavBar from "./components/Layout/Navbar"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { Toaster } from "./components/ui/Toaster"
+import Sidebar from "./components/Layout/Sidebar"
 
 const queryClient = new QueryClient();
 
@@ -15,9 +16,9 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {user && <NavBar />}
+      <NavBar />
       <div className="flex min-h-screen">
-          { user && <div className="w-1/6 bg-gray-100 p-4">Sidebar</div> }
+          <Sidebar />
           <main>
               {children}
           </main>
