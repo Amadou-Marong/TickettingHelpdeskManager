@@ -12,6 +12,7 @@ import { Heading1 } from "lucide-react"
 import { useState } from "react"
 import TicketDetail from "./pages/TicketDetail"
 import Unauthorized from "./pages/Unauthorized"
+import NotFound from "./pages/NotFound"
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,9 @@ const AppContent = () => {
             path="/login"
             element={<Login />}
           />
+
+          {/* Catch-all route */}
+          <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>
       </Router>
     )
