@@ -21,15 +21,18 @@ import {
 // import { useToast } from '@/components/ui/use-toast';
 // import { Dialog, DialogContent, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { mockTickets } from '../data/mockData';
+import { mockComments, mockTickets } from '../data/mockData';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { useToast } from '../hooks/useToast';
 import NotFound from './NotFound';
+import Button from '../components/ui/Button';
+import { useAuth } from '../contexts/AuthContext';
+import TicketDetails from '../components/tickets/TicketDetails';
 
 const TicketDetail = () => {
   const { id } = useParams();
   const [ticket, setTicket] = useState(mockTickets.find(ticket => ticket.id === id));
-//   const { user, hasPermission } = useAuth();
+  const { user, hasPermission } = useAuth()
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -41,6 +44,44 @@ const TicketDetail = () => {
   const [escalationReason, setEscalationReason] = useState('');
 
   if (!ticket) return <NotFound />;
+
+  // Check if user has permission to view this ticket
+  const canViewTicket = 
+    user && (
+      hasPermission('view:all_tickets') || 
+      (hasPermission('view:own_tickets') && ticket.createdBy.id === user.id) ||
+      (user.id === ticket.assignedTo?.id)
+    );
+
+  // Check if user has permission to resolve the ticket
+  const canResolveTicket = 
+    user && (
+      hasPermission('update:any_ticket') || 
+      (hasPermission('update:team_ticket') && user.role === 'manager') ||
+      (hasPermission('update:own_ticket') && user.id === ticket.assignedTo?.id)
+    );
+    
+  // Check if user can escalate tickets
+  const canEscalateTicket =
+    user && (
+      hasPermission('update:any_ticket') ||
+      hasPermission('update:team_ticket') ||
+      (hasPermission('update:own_ticket') && 
+        (user.id === ticket.assignedTo?.id || user.id === ticket.createdBy.id))
+    );
+
+//   if (!canViewTicket) {
+//     return (
+//       <div className="p-6 md:p-8">
+//         <Alert variant="destructive" className="mb-4">
+//           <AlertTriangle className="h-4 w-4" />
+//           <AlertDescription>
+//             You don't have permission to view this ticket.
+//           </AlertDescription>
+//         </Alert>
+//       </div>
+//     );
+//   }
 
   const handleSaveEdit = () => {
     setTicket({ ...ticket, title: editedTitle, description: editedDescription, priority: editedPriority });
@@ -54,12 +95,69 @@ const TicketDetail = () => {
     toast({ title: "Ticket escalated", description: "The ticket has been escalated to high priority." });
   };
 
+  // Filter comments related to this ticket
+  const ticketComments = mockComments.filter(comment => comment.ticketId === id).map(comment => ({
+    id: comment.id,
+    content: comment.content,
+    createdAt: new Date(comment.createdAt),
+    user: comment.user
+  }));
+
+
   return (
     <div className="p-6 md:p-8">
       <div className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1">
-          <Button variant="outline" size="sm" onClick={() => navigate('/tickets')}>Back to Tickets</Button>
-          {/* <TicketDetails ticket={ticket} /> */}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => navigate('/tickets')}
+              >
+                Back to Tickets
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              {canResolveTicket && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setEditDialogOpen(true)}
+                >
+                  <Edit className="h-4 w-4 mr-2" />
+                  Edit Details
+                </Button>
+              )}
+              {canEscalateTicket && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => setEscalateDialogOpen(true)}
+                >
+                  <ArrowUpCircle className="h-4 w-4 mr-2" />
+                  Escalate
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <TicketDetails 
+            ticket={{
+              id: ticket.id,
+              title: ticket.title,
+              description: ticket.description,
+              status: ticket.status,
+              priority: ticket.priority,
+              category: ticket.category,
+              createdAt: new Date(ticket.createdAt),
+              updatedAt: new Date(ticket.updatedAt),
+              assignedTo: ticket.assignedTo,
+              createdBy: ticket.createdBy,
+              commentsCount: ticket.commentsCount
+            }}
+            comments={ticketComments}
+            canResolve={canResolveTicket}
+          />
         </div>
         <Card className="border sticky top-4">
           <CardHeader>
@@ -78,7 +176,6 @@ const TicketDetail = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
   );
 };
 
