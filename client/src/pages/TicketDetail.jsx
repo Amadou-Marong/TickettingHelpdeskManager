@@ -23,6 +23,8 @@ import {
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { mockTickets } from '../data/mockData';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { useToast } from '../hooks/useToast';
+import NotFound from './NotFound';
 
 const TicketDetail = () => {
   const { id } = useParams();

@@ -23,10 +23,11 @@ const TicketCard = ({ ticket }) => {
   return (
     <Card 
       className="glass-panel glass-panel-hover overflow-hidden cursor-pointer transform transition-all hover:-translate-y-1 border"
-      onClick={() => {
-        console.log("Navigating to:", `/tickets/${ticket?.id}`);
-        navigate(`/tickets/${ticket?.id}`);
-      }}
+      // onClick={() => {
+      //   console.log("Navigating to:", `/tickets/${ticket?.id}`);
+      //   navigate(`/tickets/${ticket?.id}`);
+      // }}
+      
     >
       <CardHeader className="p-4 pb-2 flex flex-row items-start justify-between">
         <div className="space-y-1">
