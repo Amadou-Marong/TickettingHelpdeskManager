@@ -8,6 +8,7 @@ import NavBar from "./components/Layout/Navbar"
 import { AuthProvider, useAuth } from "./contexts/AuthContext"
 import { Toaster } from "./components/ui/Toaster"
 import Sidebar from "./components/Layout/Sidebar"
+import { Heading1 } from "lucide-react"
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,10 @@ const AppContent = () => {
         <Routes>
           <Route 
             path="/"
+            element={<h1>Hello Welcome</h1>}
+          />
+          <Route 
+            path="/dashboard"
             element={<Layout> <Dashboard /> </Layout>}
           />
           <Route 

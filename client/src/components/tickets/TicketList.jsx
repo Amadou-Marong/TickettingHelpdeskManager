@@ -31,7 +31,7 @@ const TicketList = ({ tickets, onCreateTicket }) => {
 
   return (
     <AnimatedTransition>
-      <div className="space-y-6 p-6 md:p-8">
+      <div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h2 className="text-3xl font-bold tracking-tight">Tickets</h2>

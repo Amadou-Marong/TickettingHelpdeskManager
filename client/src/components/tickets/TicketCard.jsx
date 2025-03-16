@@ -10,18 +10,19 @@ import {
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/Card';
 import PriorityBadge from '../ui/PriorityBadge';
 import StatusBadge from '../ui/StatusBadge';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 // import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 // import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 // import StatusBadge from '@/components/ui/StatusBadge';
 // import PriorityBadge from '@/components/ui/PriorityBadge';
-// import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 
 const TicketCard = ({ ticket }) => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-//   const formattedDate = formatDistanceToNow(new Date(ticket.createdAt), {
-//     addSuffix: true,
-//   });
+  const formattedDate = formatDistanceToNow(new Date(ticket.createdAt), {
+    addSuffix: true,
+  });
 
   return (
     <Card 
@@ -60,7 +61,7 @@ const TicketCard = ({ ticket }) => {
         </div>
         
         <div className="flex items-center gap-2">
-          {/* {ticket.assignedTo ? (
+          {ticket.assignedTo ? (
             <Avatar className="h-6 w-6">
               <AvatarImage src={ticket.assignedTo.avatar} alt={ticket.assignedTo.name} />
               <AvatarFallback className="text-xs">
@@ -72,11 +73,11 @@ const TicketCard = ({ ticket }) => {
               <User className="h-3 w-3 mr-1" />
               <span>Unassigned</span>
             </div>
-          )}  */}
+          )} 
           
           <div className="text-xs text-muted-foreground flex items-center">
             <Clock className="h-3 w-3 mr-1" />
-            {/* <span>{formattedDate}</span> */}
+            <span>{formattedDate}</span>
           </div>
         </div>
       </CardFooter>
