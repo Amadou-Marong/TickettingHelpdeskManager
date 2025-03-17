@@ -27,6 +27,7 @@ import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/Select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../components/ui/Dialog";
 import { Textarea } from "../components/ui/Textarea";
+import { Alert, AlertDescription } from "../components/ui/Alert";
 
 const TicketDetail = () => {
   const { id } = useParams();
@@ -80,18 +81,18 @@ const TicketDetail = () => {
         (user.id === ticket.assignedTo?.id ||
           user.id === ticket.createdBy.id)));
 
-  //   if (!canViewTicket) {
-  //     return (
-  //       <div className="p-6 md:p-8">
-  //         <Alert variant="destructive" className="mb-4">
-  //           <AlertTriangle className="h-4 w-4" />
-  //           <AlertDescription>
-  //             You don't have permission to view this ticket.
-  //           </AlertDescription>
-  //         </Alert>
-  //       </div>
-  //     );
-  //   }
+    if (!canViewTicket) {
+      return (
+        <div className="p-6 md:p-8">
+          <Alert variant="destructive" className="mb-4">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+              You don't have permission to view this ticket.
+            </AlertDescription>
+          </Alert>
+        </div>
+      );
+    }
 
   const handleSaveEdit = () => {
     setTicket({
@@ -153,7 +154,7 @@ const TicketDetail = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            {/* <div>
+            <div>
               <Button
                 variant="outline"
                 size="sm"
@@ -161,7 +162,7 @@ const TicketDetail = () => {
               >
                 Back to Tickets
               </Button>
-            </div> */}
+            </div>
             <div className="flex gap-2">
               {canResolveTicket && (
                 <Button
@@ -327,9 +328,9 @@ const TicketDetail = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="priority" className="text-sm font-medium">Priority</label>
-                {/* <Select 
+                <Select 
                   value={editedPriority} 
-                  onValueChange={(value: 'low' | 'medium' | 'high' | 'urgent') => setEditedPriority(value)}
+                  onValueChange={(value) => setEditedPriority(value)}
                 >
                   <SelectTrigger id="priority">
                     <SelectValue placeholder="Select priority" />
@@ -340,7 +341,7 @@ const TicketDetail = () => {
                     <SelectItem value="high">High</SelectItem>
                     <SelectItem value="urgent">Urgent</SelectItem>
                   </SelectContent>
-                </Select> */}
+                </Select>
               </div>
               
               <div className="space-y-2">
@@ -375,24 +376,49 @@ const TicketDetail = () => {
         </DialogContent>
       </Dialog>
 
-      <Card className="border sticky top-4">
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center">
-            <FileText className="h-5 w-5 mr-2" /> Resolution Resources
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Input placeholder="Search knowledge base..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-            <div className="space-y-4">
-              {mockKnowledgeArticles.filter(article => article.title.includes(searchQuery)).map(article => (
-                <div key={article.id} className="border-b pb-3">
-                  <a href={`/knowledge/${article.id}`} className="text-sm font-medium hover:text-primary">{article.title}</a>
-                  <p className="text-xs mt-1">{article.content.substring(0, 60)}...</p>
-                </div>
-              ))}
+      {/* Escalate Ticket Dialog */}
+      <Dialog open={escalateDialogOpen} onOpenChange={setEscalateDialogOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center">
+              <ArrowUpCircle className="h-5 w-5 mr-2" />
+              Escalate Ticket
+            </DialogTitle>
+            <DialogDescription>
+              Provide a reason for escalating this ticket
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <label htmlFor="reason" className="text-sm font-medium">Escalation Reason</label>
+              <Textarea 
+                id="reason" 
+                value={escalationReason} 
+                onChange={(e) => setEscalationReason(e.target.value)}
+                placeholder="Please explain why this ticket needs to be escalated..."
+                rows={4}
+              />
             </div>
-        </CardContent>
-      </Card>
+            
+            <Alert>
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                Escalating this ticket will set its priority to high and bring it to the attention of managers.
+              </AlertDescription>
+            </Alert>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEscalateDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleEscalateTicket}>
+              <ArrowUpCircle className="h-4 w-4 mr-2" />
+              Escalate Ticket
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
     </div>
   );
 };

@@ -29,7 +29,7 @@ const DialogContent = React.forwardRef(function DialogContent(
       <DialogOverlay />
       <DialogPrimitive.Content
         ref={ref}
-        className={`fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border bg-white p-6 shadow-lg sm:rounded-lg ${className || ""}`}
+        className={`fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border border-gray-300 bg-white p-6 shadow-lg sm:rounded-lg ${className || ""}`}
         {...props}
       >
         {children}
