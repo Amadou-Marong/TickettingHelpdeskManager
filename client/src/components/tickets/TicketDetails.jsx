@@ -171,14 +171,14 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                       </div>
                     )}
                     <Separator />
-                    {/* <form onSubmit={handleSubmitComment}> */}
+                    <form onSubmit={handleSubmitComment}>
                       <div className="space-y-4">
-                        {/* <Textarea
+                        <Textarea
                           placeholder="Add a comment..."
-                        //   value={newComment}
-                        //   onChange={(e) => setNewComment(e.target.value)}
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
                           className="min-h-[100px] input-field"
-                        /> */}
+                        />
                         <div className="flex flex-wrap justify-between items-center gap-4">
                           <div className="flex items-center">
                             {canResolve && (
@@ -186,8 +186,8 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                                 <input
                                   type="checkbox"
                                   id="private-comment"
-                                //   checked={isPrivateComment}
-                                //   onChange={() => setIsPrivateComment(!isPrivateComment)}
+                                  checked={isPrivateComment}
+                                  onChange={() => setIsPrivateComment(!isPrivateComment)}
                                   className="mr-2"
                                 />
                                 <label htmlFor="private-comment" className="text-sm flex items-center">
@@ -208,7 +208,7 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                           </Button>
                         </div>
                       </div>
-                    {/* </form> */}
+                    </form>
                   </CardContent>
                 </Card>
               </TabsContent>

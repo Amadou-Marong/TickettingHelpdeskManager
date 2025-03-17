@@ -23,7 +23,7 @@ const Sidebar = () => {
 
     return (
         <aside 
-            className={`min-h-screen inset-y-0 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[250px]'}`}
+            className={`min-h-screen inset-y-0 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[200px]'}`}
         >
             <div className="flex items-center justify-between p-4 h-16 relative">
                 {!collapsed ? (

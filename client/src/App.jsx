@@ -13,6 +13,7 @@ import { useState } from "react"
 import TicketDetail from "./pages/TicketDetail"
 import Unauthorized from "./pages/Unauthorized"
 import NotFound from "./pages/NotFound"
+import Index from "./pages/Index"
 
 const queryClient = new QueryClient();
 
@@ -40,7 +41,7 @@ const AppContent = () => {
         <Routes>
           {/* Public routes */}
           {/* <Route path="/" element={<Index />} /> */}
-          <Route path="/" element={<h1>Hello Welcome</h1>}/>
+          <Route path="/" element={<Index />}/>
           <Route path="/login" element={<Login />} />
           {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/unauthorized" element={<Layout><Unauthorized /></Layout>} />
