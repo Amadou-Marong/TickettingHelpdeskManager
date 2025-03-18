@@ -11,6 +11,8 @@ import StatusBadge from '../ui/StatusBadge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/Tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { Separator } from '../ui/Separator';
+import { Textarea } from '../ui/Textarea';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/Dialog'
 
 const TicketDetails = ({ ticket, comments, canResolve = false }) => {
 
@@ -200,12 +202,13 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                     <Separator className="my-4" />
                     <form onSubmit={handleSubmitComment}>
                       <div className="space-y-4">
-                        {/* <Textarea
+                        <Textarea
                           placeholder="Add a comment..."
                           value={newComment}
                           onChange={(e) => setNewComment(e.target.value)}
                           className="min-h-[100px] input-field"
-                        /> */}
+                        />
+            
                         <div className="flex flex-wrap justify-between items-center gap-4">
                           <div className="flex items-center">
                             {canResolve && (
@@ -452,8 +455,20 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
             </Card>
           </div>
         </div>
-
       </div>
+      
+      {/* Ticket Resolution Dialog */}
+      <Dialog open={isResolvingTicket} onOpenChange={setIsResolvingTicket}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Resolve Ticket #{ticket.id.substring(0, 8)}</DialogTitle>
+              <DialogDescription>
+                Complete the resolution process for this support ticket.
+              </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+      
     </AnimatedTransition>
   )
 }
