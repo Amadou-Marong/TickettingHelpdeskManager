@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/Tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { Separator } from '../ui/Separator';
 import { Textarea } from '../ui/Textarea';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/Dialog'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/Dialog'
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import Label from '../ui/Label';
 
@@ -542,7 +542,15 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
             </div>
           </div>
           
-          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsResolvingTicket(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleResolveTicket} disabled={!resolution.solution}>
+              {resolution.type === 'resolved' ? 'Resolve Ticket' : 'Close Ticket'}
+            </Button>
+          </DialogFooter>
+
         </DialogContent>
       </Dialog>
       
