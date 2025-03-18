@@ -15,6 +15,8 @@ import { Textarea } from '../ui/Textarea';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../ui/Dialog'
 import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
 import Label from '../ui/Label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/Select';
+import PriorityBadge from '../ui/PriorityBadge'
 
 const TicketDetails = ({ ticket, comments, canResolve = false }) => {
 
@@ -43,7 +45,7 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
     // Resolve ticket logic would go here
     // toast.success(`Ticket ${resolution.type === 'resolved' ? 'resolved' : 'closed'} successfully`);
     toast({
-      title: 'Ticket resolved',
+      title: `${resolution.type === 'resolved' ? 'resolved' : 'closed'}`,
       description: `Ticket ${resolution.type === 'resolved' ? 'resolved' : 'closed'} successfully`
     })
     setIsResolvingTicket(false);
@@ -355,7 +357,7 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                   </div>
                   <div>
                     <p className="text-sm font-medium mb-1">Priority</p>
-                    {/* <PriorityBadge priority={ticket.priority} /> */}
+                    <PriorityBadge priority={ticket.priority} />
                   </div>
                   <div>
                     <p className="text-sm font-medium mb-1">Category</p>
