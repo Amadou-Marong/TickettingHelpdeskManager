@@ -24,7 +24,7 @@ const Tickets = () => {
 
   return (
     <div className="p-6 md:p-8">
-        <TicketList tickets={formattedTickets} onCreateTicket={() => navigate('/')}/>     
+        <TicketList tickets={formattedTickets} onCreateTicket={() => navigate('/create-ticket')}/>     
         
     </div>
   )

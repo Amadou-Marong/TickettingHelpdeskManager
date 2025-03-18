@@ -14,6 +14,7 @@ import TicketDetail from "./pages/TicketDetail"
 import Unauthorized from "./pages/Unauthorized"
 import NotFound from "./pages/NotFound"
 import Index from "./pages/Index"
+import CreateTicket from "./pages/CreateTicket"
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,10 @@ const AppContent = () => {
           <Route 
             path="/tickets/:id"
             element={<Layout> <TicketDetail /> </Layout>}
+          />
+          <Route 
+            path="/create-ticket"
+            element={<Layout> <CreateTicket /> </Layout>}
           />
           <Route 
             path="/login"
