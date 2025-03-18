@@ -41,7 +41,11 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
   
   const handleResolveTicket = () => {
     // Resolve ticket logic would go here
-    toast.success(`Ticket ${resolution.type === 'resolved' ? 'resolved' : 'closed'} successfully`);
+    // toast.success(`Ticket ${resolution.type === 'resolved' ? 'resolved' : 'closed'} successfully`);
+    toast({
+      title: 'Ticket resolved',
+      description: `Ticket ${resolution.type === 'resolved' ? 'resolved' : 'closed'} successfully`
+    })
     setIsResolvingTicket(false);
     
     // In a real app, we would update the ticket status here
