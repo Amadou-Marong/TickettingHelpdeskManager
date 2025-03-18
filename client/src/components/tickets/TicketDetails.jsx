@@ -506,11 +506,43 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                   className="min-h-[100px]"
                 />
               </div>
-              
+              {resolution.type === 'closed' && (
+                <div className="space-y-2">
+                  <Label htmlFor="reason">Reason for Closing</Label>
+                  <Select 
+                    value={resolution.reason} 
+                    onValueChange={(value) => setResolution({...resolution, reason: value})}
+                  >
+                    <SelectTrigger id="reason">
+                      <SelectValue placeholder="Select a reason" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="duplicate">Duplicate ticket</SelectItem>
+                      <SelectItem value="irrelevant">Not relevant/Not an issue</SelectItem>
+                      <SelectItem value="incomplete">Incomplete information</SelectItem>
+                      <SelectItem value="user-fixed">Resolved by user</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
+              <div className="flex items-center space-x-2 pt-2">
+                <input
+                  type="checkbox"
+                  id="follow-up"
+                  checked={resolution.followUp}
+                  onChange={() => setResolution({...resolution, followUp: !resolution.followUp})}
+                  className="mr-2"
+                />
+                <Label htmlFor="follow-up" className="cursor-pointer">
+                  Schedule follow-up for this ticket
+                </Label>
+              </div>
             </div>
           </div>
-
+          
+          
         </DialogContent>
       </Dialog>
       
