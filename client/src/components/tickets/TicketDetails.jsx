@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toast } from '../ui/UseToast';
 import { useNavigate } from 'react-router-dom';
 import AnimatedTransition from '../../common/AnimatedTransition';
-import { ArrowLeft, Calendar, CheckCircle, Clock, CornerUpRight, Edit, FileText, Lock, MessageSquare, MoreHorizontal, Paperclip, Send, ThumbsUp, User } from 'lucide-react';
+import { ArrowLeft, Calendar, CheckCircle, Clock, CornerUpRight, Edit, FileText, Lock, MessageSquare, MoreHorizontal, Paperclip, Send, ThumbsUp, User, XCircle } from 'lucide-react';
 import Button from '../ui/Button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../ui/DropdownMenu';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/Card';
@@ -13,6 +13,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { Separator } from '../ui/Separator';
 import { Textarea } from '../ui/Textarea';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/Dialog'
+import { RadioGroup, RadioGroupItem } from '../ui/RadioGroup';
+import Label from '../ui/Label';
 
 const TicketDetails = ({ ticket, comments, canResolve = false }) => {
 
@@ -466,6 +468,49 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
                 Complete the resolution process for this support ticket.
               </DialogDescription>
           </DialogHeader>
+          
+          <div className="py-4">
+            <div className="space-y-4">
+            <div className="space-y-2">
+                <Label>Resolution Type</Label>
+                <RadioGroup 
+                  defaultValue="resolved" 
+                  value={resolution.type}
+                  onValueChange={(value) => setResolution({...resolution, type: value})}
+                  className="flex flex-col space-y-1"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="resolved" id="resolved" />
+                    <Label htmlFor="resolved" className="flex items-center cursor-pointer">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                      Resolved - Issue has been fixed
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="closed" id="closed" />
+                    <Label htmlFor="closed" className="flex items-center cursor-pointer">
+                      <XCircle className="h-4 w-4 text-red-600 mr-2" />
+                      Closed - Cannot be resolved or duplicate
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="solution">Resolution Details</Label>
+                <Textarea 
+                  id="solution"
+                  placeholder="Describe how the issue was resolved..."
+                  value={resolution.solution}
+                  onChange={(e) => setResolution({...resolution, solution: e.target.value})}
+                  className="min-h-[100px]"
+                />
+              </div>
+              
+
+            </div>
+          </div>
+
         </DialogContent>
       </Dialog>
       
