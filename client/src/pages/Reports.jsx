@@ -26,21 +26,21 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/Tabs";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip as RechartsTooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip as RechartsTooltip,
   ResponsiveContainer,
   LineChart as RechartLineChart,
   Line,
   PieChart as RechartPieChart,
   Pie,
   Cell,
-  Legend
-} from 'recharts';
+  Legend,
+} from "recharts";
 import { useAuth } from "../contexts/AuthContext";
 
 // Mock data for charts
@@ -269,9 +269,19 @@ const Reports = () => {
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="name" />
-                      <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
+                      <YAxis
+                        label={{
+                          value: "Hours",
+                          angle: -90,
+                          position: "insideLeft",
+                        }}
+                      />
                       <RechartsTooltip />
-                      <Bar dataKey="time" fill="#8884d8" name="Response Time (hours)" />
+                      <Bar
+                        dataKey="time"
+                        fill="#8884d8"
+                        name="Response Time (hours)"
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -279,14 +289,81 @@ const Reports = () => {
             </Card>
           </TabsContent>
           <TabsContent value="breakdown" className="space-y-4 mt-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Tickets by Category</CardTitle>
-                <CardDescription>
-                  Destribution of tickets across categories
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Tickets by Category</CardTitle>
+                  <CardDescription>
+                    Destribution of tickets across categories
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RechartPieChart>
+                        <Pie
+                          data={ticketsByCategory}
+                          cx="50%"
+                          cy="50%"
+                          labelLine={false}
+                          outerRadius={80}
+                          fill="#8884d8"
+                          dataKey="value"
+                          label={({ name, percent }) =>
+                            `${name} ${(percent * 100).toFixed(0)}%`
+                          }
+                        >
+                          {ticketsByCategory.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
+                        </Pie>
+                        <RechartsTooltip />
+                      </RechartPieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Tickets by Status</CardTitle>
+                  <CardDescription>
+                    Current status of all tickets
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RechartPieChart>
+                        <Pie
+                          data={ticketsByStatus}
+                          cx="50%"
+                          cy="50%"
+                          labelLine={false}
+                          outerRadius={80}
+                          fill="#8884d8"
+                          dataKey="value"
+                          label={({ name, percent }) =>
+                            `${name} ${(percent * 100).toFixed(0)}%`
+                          }
+                        >
+                          {ticketsByStatus.map((entry, index) => (
+                            <Cell
+                              key={`cell-${index}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
+                        </Pie>
+                        <RechartsTooltip />
+                      </RechartPieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
         </Tabs>
       </div>
