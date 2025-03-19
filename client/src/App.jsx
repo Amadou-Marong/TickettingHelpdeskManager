@@ -15,6 +15,7 @@ import Unauthorized from "./pages/Unauthorized"
 import NotFound from "./pages/NotFound"
 import Index from "./pages/Index"
 import CreateTicket from "./pages/CreateTicket"
+import Reports from "./pages/Reports"
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,12 @@ const AppContent = () => {
           <Route 
             path="/login"
             element={<Login />}
+          />
+
+          {/* Reports route */}
+          <Route
+            path="/reports"
+            element={<Layout> <Reports /> </Layout>}
           />
 
           {/* Catch-all route */}

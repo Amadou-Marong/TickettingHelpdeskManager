@@ -1,7 +1,7 @@
 export const Card = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`rounded-lg p-4 border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${className}`}
+      className={`rounded-2xl p-4 border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${className}`}
       {...props}
     >
       {children}
@@ -30,7 +30,7 @@ export const CardTitle = ({ children, className = "", ...props }) => {
 
 export const CardDescription = ({ children, className = "", ...props }) => {
   return (
-    <p className={`text-sm text-muted-gray-400 ${className}`} {...props}>{children}</p>
+    <p className={`text-sm text-gray-400 ${className}`} {...props}>{children}</p>
   );
 };
 
