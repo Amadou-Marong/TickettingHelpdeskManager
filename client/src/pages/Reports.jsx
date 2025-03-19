@@ -1,11 +1,108 @@
-import React from "react";
+import { useState } from "react";
 import AnimatedTransition from "../common/AnimatedTransition";
 import Button from "../components/ui/Button";
-import { ArrowDownRight, ArrowUpRight, BarChart3, Calendar, CheckCircle2, Clock, Download, LineChart, PieChart, Users } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/Card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/Tabs";
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  BarChart3,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Download,
+  LineChart,
+  PieChart,
+  Users,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/Card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/Tabs";
+import { 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip as RechartsTooltip, 
+  ResponsiveContainer,
+  LineChart as RechartLineChart,
+  Line,
+  PieChart as RechartPieChart,
+  Pie,
+  Cell,
+  Legend
+} from 'recharts';
+import { useAuth } from "../contexts/AuthContext";
+
+// Mock data for charts
+const ticketsByCategory = [
+  { name: "Hardware", value: 28 },
+  { name: "Software", value: 45 },
+  { name: "Network", value: 18 },
+  { name: "Access", value: 34 },
+  { name: "Other", value: 12 },
+];
+
+const ticketsByStatus = [
+  { name: "Open", value: 24 },
+  { name: "In Progress", value: 38 },
+  { name: "On Hold", value: 12 },
+  { name: "Resolved", value: 65 },
+  { name: "Escalated", value: 8 },
+];
+
+const ticketsByPriority = [
+  { name: "Low", value: 35 },
+  { name: "Medium", value: 45 },
+  { name: "High", value: 15 },
+  { name: "Urgent", value: 5 },
+];
+
+const timelineData = [
+  { name: "Week 1", tickets: 45, resolved: 32 },
+  { name: "Week 2", tickets: 52, resolved: 41 },
+  { name: "Week 3", tickets: 38, resolved: 35 },
+  { name: "Week 4", tickets: 65, resolved: 50 },
+  { name: "Week 5", tickets: 48, resolved: 43 },
+  { name: "Week 6", tickets: 57, resolved: 52 },
+];
+
+const responseTimeData = [
+  { name: "Mon", time: 3.2 },
+  { name: "Tue", time: 2.8 },
+  { name: "Wed", time: 4.1 },
+  { name: "Thu", time: 3.5 },
+  { name: "Fri", time: 2.5 },
+  { name: "Sat", time: 1.8 },
+  { name: "Sun", time: 1.2 },
+];
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
 
 const Reports = () => {
+  const { hasPermission } = useAuth();
+  const [dateRange, setDateRange] = useState("last30days");
+
+  if (!hasPermission("view:reports")) {
+    return (
+      <div className="p-6 md:p-8">
+        <h2 className="text-2xl font-bold">Unauthorized</h2>
+        <p className="text-muted-foreground">
+          You don't have permission to access this page.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <AnimatedTransition>
       <div className="p-6 md:p-8 space-y-6">
@@ -37,7 +134,9 @@ const Reports = () => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div className="space-y-1">
-                <CardTitle className="text-sm font-medium">Total Tickets</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Tickets
+                </CardTitle>
                 <CardDescription>All time</CardDescription>
               </div>
               <Users className="h-4 w-4 text-muted-foreground" />
@@ -53,7 +152,9 @@ const Reports = () => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div className="space-y-1">
-                <CardTitle className="text-sm font-medium">Avg. Resolution Time</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Avg. Resolution Time
+                </CardTitle>
                 <CardDescription>Last 30 days</CardDescription>
               </div>
               <Clock className="h-4 w-4 text-muted-foreground" />
@@ -69,7 +170,9 @@ const Reports = () => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div className="space-y-1">
-                <CardTitle className="text-sm font-medium">Resolution Rate</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Resolution Rate
+                </CardTitle>
                 <CardDescription>Last 30 days</CardDescription>
               </div>
               <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
@@ -85,52 +188,86 @@ const Reports = () => {
         </div>
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="w-full grid md:grid-cols-3 gap-4">
-              <TabsTrigger value="overview">
-                <BarChart3 className="h-4 w-4 mr-2"/>
-                Overview
-              </TabsTrigger>
-              <TabsTrigger value="perfomance">
-                <LineChart className="h-4 w-4 mr-2" />
-                Perfomance
-              </TabsTrigger>
-              <TabsTrigger value="breakdown">
-                <PieChart className="h-4 w-4 mr-2" />
-                Breakdown
-              </TabsTrigger>
+            <TabsTrigger value="overview">
+              <BarChart3 className="h-4 w-4 mr-2" />
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="perfomance">
+              <LineChart className="h-4 w-4 mr-2" />
+              Perfomance
+            </TabsTrigger>
+            <TabsTrigger value="breakdown">
+              <PieChart className="h-4 w-4 mr-2" />
+              Breakdown
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4 mt-6">
-              <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Ticket volume over time</CardTitle>
-                    <CardDescription>
-                      Number of tickets created vs resolved
-                    </CardDescription>
-                  </CardHeader>
-              </Card>            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  Ticket volume over time
+                </CardTitle>
+                <CardDescription>
+                  Number of tickets created vs resolved
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RechartLineChart
+                      data={timelineData}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <RechartsTooltip />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="tickets"
+                        stroke="#8884d8"
+                        activeDot={{ r: 8 }}
+                        name="Created"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="resolved"
+                        stroke="#82ca9d"
+                        name="Resolved"
+                      />
+                    </RechartLineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
           <TabsContent value="perfomance" className="space-y-4 mt-6">
-              <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Average response time</CardTitle>
-                    <CardDescription>
-                      Average time to first response in hours
-                    </CardDescription>
-                  </CardHeader>
-              </Card>            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Average response time</CardTitle>
+                <CardDescription>
+                  Average time to first response in hours
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </TabsContent>
           <TabsContent value="breakdown" className="space-y-4 mt-6">
-              <Card>
-                  <CardHeader>
-                    <CardTitle className="text-lg">Tickets by Category</CardTitle>
-                    <CardDescription>
-                      Destribution of tickets across categories
-                    </CardDescription>
-                  </CardHeader>
-              </Card>            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Tickets by Category</CardTitle>
+                <CardDescription>
+                  Destribution of tickets across categories
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </TabsContent>
-
         </Tabs>
-
       </div>
     </AnimatedTransition>
   );
