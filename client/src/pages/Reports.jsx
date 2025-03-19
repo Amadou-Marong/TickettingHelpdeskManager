@@ -255,6 +255,27 @@ const Reports = () => {
                   Average time to first response in hours
                 </CardDescription>
               </CardHeader>
+              <CardContent>
+                <div className="h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={responseTimeData}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
+                      <RechartsTooltip />
+                      <Bar dataKey="time" fill="#8884d8" name="Response Time (hours)" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
             </Card>
           </TabsContent>
           <TabsContent value="breakdown" className="space-y-4 mt-6">
