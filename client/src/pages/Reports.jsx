@@ -1,8 +1,9 @@
 import React from "react";
 import AnimatedTransition from "../common/AnimatedTransition";
 import Button from "../components/ui/Button";
-import { ArrowDownRight, ArrowUpRight, Calendar, CheckCircle2, Clock, Download, Users } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, BarChart3, Calendar, CheckCircle2, Clock, Download, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/Card";
+import { Tabs, TabsList, TabsTrigger } from "../components/ui/Tabs";
 
 const Reports = () => {
   return (
@@ -82,6 +83,14 @@ const Reports = () => {
             </CardContent>
           </Card>
         </div>
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="w-full grid md:grid-cols-3 gap-4">
+              <TabsTrigger value="overview">
+                <BarChart3 className="h-4 w-4 mr-2"/>
+                Overview
+              </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
       </div>
     </AnimatedTransition>
