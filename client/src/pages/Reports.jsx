@@ -1,9 +1,9 @@
 import React from "react";
 import AnimatedTransition from "../common/AnimatedTransition";
 import Button from "../components/ui/Button";
-import { ArrowDownRight, ArrowUpRight, BarChart3, Calendar, CheckCircle2, Clock, Download, Users } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, BarChart3, Calendar, CheckCircle2, Clock, Download, LineChart, PieChart, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/Card";
-import { Tabs, TabsList, TabsTrigger } from "../components/ui/Tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/Tabs";
 
 const Reports = () => {
   return (
@@ -89,7 +89,46 @@ const Reports = () => {
                 <BarChart3 className="h-4 w-4 mr-2"/>
                 Overview
               </TabsTrigger>
+              <TabsTrigger value="perfomance">
+                <LineChart className="h-4 w-4 mr-2" />
+                Perfomance
+              </TabsTrigger>
+              <TabsTrigger value="breakdown">
+                <PieChart className="h-4 w-4 mr-2" />
+                Breakdown
+              </TabsTrigger>
           </TabsList>
+          <TabsContent value="overview" className="space-y-4 mt-6">
+              <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Ticket volume over time</CardTitle>
+                    <CardDescription>
+                      Number of tickets created vs resolved
+                    </CardDescription>
+                  </CardHeader>
+              </Card>            
+          </TabsContent>
+          <TabsContent value="perfomance" className="space-y-4 mt-6">
+              <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Average response time</CardTitle>
+                    <CardDescription>
+                      Average time to first response in hours
+                    </CardDescription>
+                  </CardHeader>
+              </Card>            
+          </TabsContent>
+          <TabsContent value="breakdown" className="space-y-4 mt-6">
+              <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Tickets by Category</CardTitle>
+                    <CardDescription>
+                      Destribution of tickets across categories
+                    </CardDescription>
+                  </CardHeader>
+              </Card>            
+          </TabsContent>
+
         </Tabs>
 
       </div>
