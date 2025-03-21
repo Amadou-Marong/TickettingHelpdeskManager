@@ -22,14 +22,15 @@ const queryClient = new QueryClient();
 const Layout = ({ children }) => {
   const { user } = useAuth();
   const [sidebarExpanded, setSidebarExpanded] = useState(false)
+  
 
   return (
     <>
       <NavBar />
       <div className="flex min-h-screen">
-          <Sidebar />
+          <Sidebar onToggle={setSidebarExpanded}/>
           <main className={`transition-all duration-300 flex-1 ${
-          sidebarExpanded} ? 'ml-56' : 'ml-20'`}>
+          sidebarExpanded ? 'ml-20' : 'ml-50'}`}>
               {children}
           </main>
       </div>

@@ -4,9 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 import Button from "../ui/Button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/Tooltip";
 
-const Sidebar = () => {
+const Sidebar = ({onToggle}) => {
     const [collapsed, setCollapsed] = useState(false);
     const location = useLocation();
+
+    const handleToggle = () => {
+        setCollapsed(!collapsed)
+        onToggle(!collapsed)
+    }
+
 
     const menuItems = [
         { name: 'Dashboard', path: '/dashboard', icon: Home },
@@ -23,7 +29,7 @@ const Sidebar = () => {
 
     return (
         <aside 
-            className={`min-h-screen inset-y-0 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[200px]'}`}
+            className={`min-h-screen fixed inset-y-17 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[200px]'}`}
         >
             <div className="flex items-center justify-between p-4 h-16 relative">
                 {!collapsed ? (
@@ -38,7 +44,7 @@ const Sidebar = () => {
                         <MessageSquare className="h-5 w-5 text-white" />
                     </div>
                 )}
-                <Button variant="ghost" size="icon" className="rounded-full absolute top-1 right-[-37px]" onClick={() => setCollapsed(!collapsed)}>
+                <Button variant="ghost" size="icon" className="rounded-full absolute top-1 right-[-37px]" onClick={handleToggle}>
                     {collapsed ? <ChevronRight className="h-5 w-5 text-gray-600" /> : <ChevronLeft className="h-5 w-5 text-gray-600" />}
                     {/* {collapsed ? <PanelRight className="h-5 w-5 text-gray-600" /> : <ChevronLeft className="h-5 w-5 text-gray-600" />} */}
                 </Button>
