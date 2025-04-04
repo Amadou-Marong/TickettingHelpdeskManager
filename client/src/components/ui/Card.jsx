@@ -1,7 +1,7 @@
 export const Card = ({ children, className = "", ...props }) => {
   return (
     <div
-      className={`rounded-2xl p-4 border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${className}`}
+      className={`rounded-2xl p-1 border border-gray-200 bg-white text-gray-900 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 ${className}`}
       {...props}
     >
       {children}

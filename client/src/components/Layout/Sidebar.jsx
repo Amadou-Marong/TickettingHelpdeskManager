@@ -29,7 +29,7 @@ const Sidebar = ({onToggle}) => {
 
     return (
         <aside 
-            className={`min-h-screen fixed inset-y-17 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[200px]'}`}
+            className={`min-h-screen fixed inset-y-15 left-0 z-40 transition-all duration-300 ease-in-out flex flex-col border-r border-gray-300 bg-gray-100 ${collapsed ? 'w-[70px]' : 'w-[200px]'}`}
         >
             <div className="flex items-center justify-between p-4 h-16 relative">
                 {!collapsed ? (
@@ -44,7 +44,7 @@ const Sidebar = ({onToggle}) => {
                         <MessageSquare className="h-5 w-5 text-white" />
                     </div>
                 )}
-                <Button variant="ghost" size="icon" className="rounded-full absolute top-1 right-[-37px]" onClick={handleToggle}>
+                <Button variant="ghost" size="icon" className="absolute top-1 right-[-37px]" onClick={handleToggle}>
                     {collapsed ? <ChevronRight className="h-5 w-5 text-gray-600" /> : <ChevronLeft className="h-5 w-5 text-gray-600" />}
                     {/* {collapsed ? <PanelRight className="h-5 w-5 text-gray-600" /> : <ChevronLeft className="h-5 w-5 text-gray-600" />} */}
                 </Button>
