@@ -2,7 +2,7 @@ import * as React from "react";
 
 const alertVariants = (variant) => {
   const baseClass =
-    "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground";
+    "relative w-full rounded-lg border border-gray-300 shadow-md p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground";
   const variantClasses = {
     default: "bg-background text-foreground",
     destructive:

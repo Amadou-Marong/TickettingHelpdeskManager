@@ -23,14 +23,20 @@ import {
 } from "../ui/DropdownMenu";
 import { Badge } from "../ui/Badge";
 
-const NavBar = () => {
+const NavBar = ({onToggle, collapsed, setCollapsed}) => {
+
+  const handleToggle = () => {
+    setCollapsed(!collapsed)
+    onToggle(!collapsed)
+  }
+
   return (
     <nav className="h-16 border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50 w-full">
       <div className="flex h-full items-center justify-between px-4 md:px-6">
         
         <div className="hidden md:flex items-center gap-6 lg:gap-10 flex-1">
             <Button variant="ghost" size="icon" className="rounded-full">
-              <Sidebar className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
+              <Sidebar onClick={handleToggle} className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Button>
           <div className="relative w-full max-w-md">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

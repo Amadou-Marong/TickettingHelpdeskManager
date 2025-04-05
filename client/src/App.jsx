@@ -22,13 +22,14 @@ const queryClient = new QueryClient();
 const Layout = ({ children }) => {
   const { user } = useAuth();
   const [sidebarExpanded, setSidebarExpanded] = useState(false)
+  const [collapsed, setCollapsed] = useState(false);
   
 
   return (
     <>
-      <NavBar />
+      <NavBar onToggle={setSidebarExpanded} collapsed={collapsed} setCollapsed={setCollapsed}/>
       <div className="flex min-h-screen">
-          <Sidebar onToggle={setSidebarExpanded}/>
+          <Sidebar onToggle={setSidebarExpanded} collapsed={collapsed}/>
           <main className={`transition-all duration-300 flex-1 ${
           sidebarExpanded ? 'ml-20' : 'ml-50'}`}>
               {children}
