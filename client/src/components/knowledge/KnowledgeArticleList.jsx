@@ -49,7 +49,7 @@ const KnowledgeArticleList = ({ articles }) => {
               ))}
             </div>
           </CardContent>
-          <CardFooter className="border-t pt-4 flex justify-between">
+          <CardFooter className="border-t border-gray-300 pt-4 flex justify-between">
             <div className="flex items-center">
               <Avatar className="h-6 w-6 mr-2">
                 <AvatarImage src={article.author.avatar} alt={article.author.name} />
