@@ -82,8 +82,9 @@ const TicketList = ({ tickets, onCreateTicket }) => {
           </div>
         </div>
 
-        <Tabs defaultValue="all" value={selectedTab} onValueChange={setSelectedTab}>
-          <TabsList className="grid grid-cols-5 w-full sm:w-auto">
+        <Tabs defaultValue="all" value={selectedTab} onValueChange={setSelectedTab} className="w-full">
+          {/* <TabsList className="grid md:grid-cols-5 w-full sm:w-auto"> */}
+          <TabsList className="w-full grid md:grid-cols-5 gap-4">
             <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="open">Open</TabsTrigger>
             <TabsTrigger value="in-progress">In Progress</TabsTrigger>

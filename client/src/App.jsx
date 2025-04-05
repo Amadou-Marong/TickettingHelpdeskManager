@@ -80,9 +80,14 @@ const AppContent = () => {
             element={<Layout> <Reports /> </Layout>}
           />
 
-          {/* Knowledge Route */}
+          {/* Knowledge Base Routes */}
           <Route
             path="/knowledge"
+            element={<Layout> <KnowledgeBase /> </Layout>}
+          />
+
+          <Route
+            path="/knowledge/:id"
             element={<Layout> <KnowledgeBase /> </Layout>}
           />
 
