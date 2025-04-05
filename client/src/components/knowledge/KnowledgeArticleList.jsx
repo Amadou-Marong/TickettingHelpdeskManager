@@ -2,8 +2,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/Card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '../ui/Badge';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { BookOpen, MessageSquare, ThumbsUp } from 'lucide-react';
 import { format } from 'date-fns';
 

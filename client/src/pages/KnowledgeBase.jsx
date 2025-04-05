@@ -8,6 +8,8 @@ import AnimatedTransition from '../common/AnimatedTransition';
 // import KnowledgeCategoriesList from '../components/knowledge/KnowledgeCategoriesList';
 import { mockKnowledgeArticles } from '../data/mockData';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/Tabs';
+import KnowledgeArticleList from '../components/knowledge/KnowledgeArticleList';
+import KnowledgeCategoriesList from '../components/knowledge/KnoledgeCategoriesList';
 
 const KnowledgeBase = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,15 +80,15 @@ const KnowledgeBase = () => {
             </div>
 
             <TabsContent value="articles" className="min-h-[300px]">
-              {/* <KnowledgeArticleList articles={filteredArticles} /> */}
+              <KnowledgeArticleList articles={filteredArticles} />
             </TabsContent>
             
             <TabsContent value="categories" className="min-h-[300px]">
-              {/* <KnowledgeCategoriesList /> */}
+              <KnowledgeCategoriesList />
             </TabsContent>
             
             <TabsContent value="popular" className="min-h-[300px]">
-              {/* <KnowledgeArticleList articles={filteredArticles.slice(0, 5)} /> */}
+              <KnowledgeArticleList articles={filteredArticles.slice(0, 5)} />
             </TabsContent>
           </Tabs>
         </div>
