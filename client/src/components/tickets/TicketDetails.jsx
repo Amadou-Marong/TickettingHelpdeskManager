@@ -71,10 +71,10 @@ const TicketDetails = ({ ticket, comments, canResolve = false }) => {
           </Button>
           <h2 className="text-2xl font-bold tracking-tight">Ticket #{ticket.id.substring(0, 8)}</h2>
           <div className="ml-auto flex space-x-2">
-            <Button variant="outline" size="sm">
+            {/* <Button variant="outline" size="sm">
               <Edit className="h-4 w-4 mr-2" />
               Edit
-            </Button>
+            </Button> */}
             
             {canResolve && (
               <Button 

@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound"
 import Index from "./pages/Index"
 import CreateTicket from "./pages/CreateTicket"
 import Reports from "./pages/Reports"
+import KnowledgeBase from "./pages/KnowledgeBase"
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,12 @@ const AppContent = () => {
           <Route
             path="/reports"
             element={<Layout> <Reports /> </Layout>}
+          />
+
+          {/* Knowledge Route */}
+          <Route
+            path="/knowledge"
+            element={<Layout> <KnowledgeBase /> </Layout>}
           />
 
           {/* Catch-all route */}

@@ -17,9 +17,9 @@ const Sidebar = ({onToggle, collapsed}) => {
     const menuItems = [
         { name: 'Dashboard', path: '/dashboard', icon: Home },
         { name: 'Tickets', path: '/tickets', icon: Ticket },
-        { name: 'Users', path: '/users', icon: User },
         { name: 'Reports', path: '/reports', icon: BarChart3 },
         { name: 'Knowledge Base', path: '/knowledge', icon: FileText },
+        { name: 'Users', path: '/users', icon: User },
     ];
 
     const secondaryItems = [
