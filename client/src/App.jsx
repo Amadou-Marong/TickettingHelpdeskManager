@@ -17,6 +17,7 @@ import Index from "./pages/Index"
 import CreateTicket from "./pages/CreateTicket"
 import Reports from "./pages/Reports"
 import KnowledgeBase from "./pages/KnowledgeBase"
+import KnowledgeArticleDetail from "./pages/KnowledgeArticleDetail"
 
 const queryClient = new QueryClient();
 
@@ -88,7 +89,7 @@ const AppContent = () => {
 
           <Route
             path="/knowledge/:id"
-            element={<Layout> <KnowledgeBase /> </Layout>}
+            element={<Layout> <KnowledgeArticleDetail /> </Layout>}
           />
 
           {/* Catch-all route */}
