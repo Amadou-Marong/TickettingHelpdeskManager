@@ -14,7 +14,7 @@ import {
   FileText 
 } from 'lucide-react';
 
-const categories = [
+export const categories = [
   {
     id: 'hardware',
     name: 'Hardware Issues',
@@ -80,6 +80,7 @@ const categories = [
     description: 'Configuration and settings guidance'
   }
 ];
+
 
 const KnowledgeCategoriesList = () => {
   const navigate = useNavigate();

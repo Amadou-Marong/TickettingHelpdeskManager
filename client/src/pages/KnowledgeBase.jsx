@@ -9,7 +9,7 @@ import AnimatedTransition from '../common/AnimatedTransition';
 import { mockKnowledgeArticles } from '../data/mockData';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/Tabs';
 import KnowledgeArticleList from '../components/knowledge/KnowledgeArticleList';
-import KnowledgeCategoriesList from '../components/knowledge/KnoledgeCategoriesList';
+import KnowledgeCategoriesList from '../components/knowledge/KnowledgeCategoriesList';
 
 const KnowledgeBase = () => {
   const [searchQuery, setSearchQuery] = useState('');

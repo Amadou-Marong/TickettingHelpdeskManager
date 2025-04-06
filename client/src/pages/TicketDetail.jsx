@@ -219,7 +219,7 @@ const TicketDetail = () => {
               <CardContent>
                 <div className="mb-4">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <Input 
                       placeholder="Search knowledge base..." 
                       className="pl-10"
@@ -243,7 +243,7 @@ const TicketDetail = () => {
                             href={`/knowledge/${article.id}`} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-sm font-medium hover:text-primary transition-colors"
+                            className="text-sm font-medium hover:text-blue-600 transition-colors"
                           >
                             {article.title}
                           </a>
