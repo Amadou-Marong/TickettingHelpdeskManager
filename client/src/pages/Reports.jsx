@@ -119,9 +119,9 @@ const Reports = () => {
           <div className="flex items-center gap-2">
             <Button variant="outline" className="flex items-center">
               <Calendar className="mr-2 h-4 w-4" />
-              {/* {dateRange === 'last7days' && 'Last 7 Days'} */}
-              {/* {dateRange === 'last30days' && 'Last 30 Days'} */}
-              {/* {dateRange === 'last90days' && 'Last 90 Days'} */}
+              {dateRange === 'last7days' && 'Last 7 Days'}
+              {dateRange === 'last30days' && 'Last 30 Days'}
+              {dateRange === 'last90days' && 'Last 90 Days'}
             </Button>
             <Button variant="outline">
               <Download className="h-4 w-4 mr-2" />
