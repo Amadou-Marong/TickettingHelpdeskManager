@@ -49,6 +49,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Checkbox } from '../components/ui/Checkbox';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/Table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/AlertDialog';
 // import AnimatedTransition from '@/components/common/AnimatedTransition';
 // import UserForm from '@/components/users/UserForm';
 
@@ -321,7 +322,7 @@ const UserManagement = () => {
         </Dialog>
 
         {/* Delete Confirmation Dialog */}
-        {/* <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle className="flex items-center text-destructive">
@@ -334,12 +335,12 @@ const UserManagement = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteUser} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              <AlertDialogAction onClick={handleDeleteUser} className="bg-red-600 text-white hover:bg-red p-2 rounded cursor-pointer">
                 Delete User
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
-        </AlertDialog> */}
+        </AlertDialog>
       </div>
     </AnimatedTransition>
   );
