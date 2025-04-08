@@ -47,6 +47,8 @@ import Button from '../components/ui/Button';
 import { Input } from '../components/ui/input';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../components/ui/Dialog';
 import { Checkbox } from '../components/ui/Checkbox';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/Table';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
 // import AnimatedTransition from '@/components/common/AnimatedTransition';
 // import UserForm from '@/components/users/UserForm';
 
@@ -187,7 +189,7 @@ const UserManagement = () => {
         </div>
 
         <div className="rounded-md border border-gray-300">
-          {/* <Table>
+          <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
@@ -250,7 +252,7 @@ const UserManagement = () => {
                 </TableRow>
               )}
             </TableBody>
-          </Table> */}
+          </Table>
         </div>
 
         {/* User Permissions Dialog */}
