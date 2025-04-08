@@ -59,19 +59,35 @@ const AppContent = () => {
           {/* Protected Routes */}
           <Route 
             path="/dashboard"
-            element={<Layout> <Dashboard /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout><Dashboard /></Layout>
+              </ProtectedRoute>
+            }
           />
           <Route 
             path="/tickets"
-            element={<Layout> <Tickets /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <Tickets /> </Layout>
+              </ProtectedRoute>
+            }
           />
           <Route 
             path="/tickets/:id"
-            element={<Layout> <TicketDetail /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <TicketDetail /> </Layout>
+              </ProtectedRoute>
+            }
           />
           <Route 
             path="/create-ticket"
-            element={<Layout> <CreateTicket /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <CreateTicket /> </Layout>
+              </ProtectedRoute>
+            }
           />
           <Route 
             path="/login"
@@ -81,23 +97,39 @@ const AppContent = () => {
           {/* Reports route */}
           <Route
             path="/reports"
-            element={<Layout> <Reports /> </Layout>}
+            element={
+              <ProtectedRoute requiredPermission="view:reports">
+                <Layout> <Reports /> </Layout>
+              </ProtectedRoute>
+            }
           />
 
           {/* Knowledge Base Routes */}
           <Route
             path="/knowledge"
-            element={<Layout> <KnowledgeBase /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <KnowledgeBase /> </Layout>
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/knowledge/:id"
-            element={<Layout> <KnowledgeArticleDetail /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <KnowledgeArticleDetail /> </Layout>
+              </ProtectedRoute>
+            }
           />
 
           <Route
             path="/knowledge/category/:categoryId"
-            element={<Layout> <KnowledgeCategoryDetail /> </Layout>}
+            element={
+              <ProtectedRoute>
+                <Layout> <KnowledgeCategoryDetail /> </Layout>
+              </ProtectedRoute>
+            }
           />
 
           <Route 

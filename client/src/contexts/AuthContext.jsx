@@ -20,11 +20,11 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     // Simulate API Logic
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Check if user exists
     const foundUser = mockUsers.find(
-      (user) => user.email === email && user.password === password
+      u => u.email === email && u.password === password
     );
 
     if (foundUser) {
@@ -37,54 +37,52 @@ export const AuthProvider = ({ children }) => {
         duration: 5000,
         isClosable: true,
       });
-    } else {
-      toast({
-        title: "Login Failed",
-        description: "Invalid email or password",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
+      return true;
+    } 
+    toast({
+      title: "Login Failed",
+      description: "Invalid email or password",
+      variant: "destructive",
+    });
+    return false;
+    
   };
 
   // Register User
   const register = async (name, email, password) => {
     // Simulate API Logic
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Check if user already exists
-    const foundUser = mockUsers.find((user) => user.email === email);
+    const foundUser = mockUsers.find(u => u.email === email);
 
     if (foundUser) {
       toast({
         title: "Registration Failed",
         description: "User already exists",
         status: "error",
-        duration: 5000,
-        isClosable: true,
+        variant: "destructive",
       });
-    } else {
-      // Create new user
-      const newUser = {
-        id: "user-" + mockUsers.length + 1,
-        name,
-        email,
-        password,
-        role: "employee", // Default role
-      };
+      return false;
+    } 
+    // Create new user
+    const newUser = {
+      id: "user-" + mockUsers.length + 1,
+      name,
+      email,
+      password,
+      role: "employee", // Default role
+    };
 
-      mockUsers.push(newUser);
-      setUser(newUser);
-      localStorage.setItem("user", JSON.stringify(newUser));
-      toast({
-        title: "Registration Successful",
-        description: `Welcome, ${newUser.name}`,
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
+    mockUsers.push(newUser);
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+    toast({
+      title: "Registration Successful",
+      description: `Welcome, ${newUser.name}`,
+      status: "success",
+    });
+    return true;
   };
 
   const logout = () => {
