@@ -19,6 +19,8 @@ import Reports from "./pages/Reports"
 import KnowledgeBase from "./pages/KnowledgeBase"
 import KnowledgeArticleDetail from "./pages/KnowledgeArticleDetail"
 import KnowledgeCategoryDetail from "./pages/KnowledgeCategoryDetail"
+import CreateArticle from "./pages/CreateArticle"
+import ProtectedRoute from "./components/auth/ProtectedRoute"
 
 const queryClient = new QueryClient();
 
@@ -96,6 +98,15 @@ const AppContent = () => {
           <Route
             path="/knowledge/category/:categoryId"
             element={<Layout> <KnowledgeCategoryDetail /> </Layout>}
+          />
+
+          <Route 
+            path="/create-article" 
+            element={
+              <ProtectedRoute requiredPermission="create:knowledge">
+                <Layout><CreateArticle /></Layout>
+              </ProtectedRoute>
+            } 
           />
 
           {/* Catch-all route */}
