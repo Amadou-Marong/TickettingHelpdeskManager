@@ -21,6 +21,7 @@ import KnowledgeArticleDetail from "./pages/KnowledgeArticleDetail"
 import KnowledgeCategoryDetail from "./pages/KnowledgeCategoryDetail"
 import CreateArticle from "./pages/CreateArticle"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
+import UserManagement from "./pages/UserManagement"
 
 const queryClient = new QueryClient();
 
@@ -137,6 +138,16 @@ const AppContent = () => {
             element={
               <ProtectedRoute requiredPermission="create:knowledge">
                 <Layout><CreateArticle /></Layout>
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* User Management Route */}
+          <Route 
+            path="/user-management" 
+            element={
+              <ProtectedRoute requiredPermission="manage:users">
+                <Layout><UserManagement /></Layout>
               </ProtectedRoute>
             } 
           />
