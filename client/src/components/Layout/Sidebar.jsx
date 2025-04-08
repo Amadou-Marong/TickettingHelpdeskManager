@@ -1,4 +1,4 @@
-import { BarChart3, ChevronLeft, ChevronRight, FileText, HelpCircle, Home, MessageSquare, PanelRight, Settings, Ticket, User } from "lucide-react";
+import { BarChart3, ChevronLeft, ChevronRight, FileText, HelpCircle, Home, MessageSquare, PanelRight, Settings, Ticket, Users } from "lucide-react";
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom";
 import Button from "../ui/Button";
@@ -19,7 +19,7 @@ const Sidebar = ({onToggle, collapsed}) => {
         { name: 'Tickets', path: '/tickets', icon: Ticket },
         { name: 'Reports', path: '/reports', icon: BarChart3 },
         { name: 'Knowledge Base', path: '/knowledge', icon: FileText },
-        { name: 'Users', path: '/users', icon: User },
+        { name: 'Users', path: '/user-management', icon: Users },
     ];
 
     const secondaryItems = [

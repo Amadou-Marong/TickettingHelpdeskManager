@@ -45,7 +45,8 @@ import { useToast } from '../hooks/useToast';
 import AnimatedTransition from '../common/AnimatedTransition';
 import Button from '../components/ui/Button';
 import { Input } from '../components/ui/input';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../components/ui/Dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../components/ui/Dialog';
+import { Checkbox } from '../components/ui/Checkbox';
 // import AnimatedTransition from '@/components/common/AnimatedTransition';
 // import UserForm from '@/components/users/UserForm';
 
@@ -185,7 +186,7 @@ const UserManagement = () => {
           />
         </div>
 
-        <div className="rounded-md border">
+        <div className="rounded-md border border-gray-300">
           {/* <Table>
             <TableHeader>
               <TableRow>
