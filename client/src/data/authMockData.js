@@ -35,6 +35,7 @@ export const mockUsers = [
       'delete:any_ticket',
       'assign:ticket',
       'manage:users',
+      'view:user_activity',
       'view:dashboard',
       'view:reports',
       'create:knowledge',

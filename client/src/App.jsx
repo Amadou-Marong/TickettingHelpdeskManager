@@ -22,6 +22,8 @@ import KnowledgeCategoryDetail from "./pages/KnowledgeCategoryDetail"
 import CreateArticle from "./pages/CreateArticle"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 import UserManagement from "./pages/UserManagement"
+import { ThemeProvider } from "./components/theme/ThemeProvider"
+import UsersList from "./pages/Users"
 
 const queryClient = new QueryClient();
 
@@ -141,6 +143,16 @@ const AppContent = () => {
               </ProtectedRoute>
             } 
           />
+          
+          {/* Users */}
+          <Route 
+            path="/users"
+            element={
+              <ProtectedRoute requiredPermission="manage:users">
+                <Layout><UsersList /></Layout>
+              </ProtectedRoute>
+            }
+          />
 
           {/* User Management Route */}
           <Route 
@@ -163,10 +175,12 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <Toaster />
-        <AppContent />
-      </AuthProvider>
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+        <AuthProvider>
+          <Toaster />
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   )
 }

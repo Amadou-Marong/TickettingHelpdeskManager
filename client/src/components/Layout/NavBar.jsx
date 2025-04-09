@@ -24,6 +24,7 @@ import {
 import { Badge } from "../ui/Badge";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { ModeToggle } from "../theme/ThemeToggle";
 
 const NavBar = ({ onToggle, collapsed, setCollapsed }) => {
   const navigate = useNavigate();
@@ -69,6 +70,8 @@ const NavBar = ({ onToggle, collapsed, setCollapsed }) => {
             <Button variant="ghost" size="icon" className="rounded-full">
               <Bell className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
             </Button>
+            {/* <ModeToggle /> */}
+            
 
             {user ? (
               <DropdownMenu>

@@ -50,6 +50,7 @@ import { Checkbox } from '../components/ui/Checkbox';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/Table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/AlertDialog';
+import UserForm from '../components/users/UserForm';
 // import AnimatedTransition from '@/components/common/AnimatedTransition';
 // import UserForm from '@/components/users/UserForm';
 
@@ -317,7 +318,7 @@ const UserManagement = () => {
                 Create a new user account with appropriate role and permissions.
               </DialogDescription>
             </DialogHeader>
-            {/* <UserForm onSubmit={handleAddUser} /> */}
+            <UserForm onSubmit={handleAddUser} />
           </DialogContent>
         </Dialog>
 
@@ -335,7 +336,7 @@ const UserManagement = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteUser} className="bg-red-600 text-white hover:bg-red p-2 rounded cursor-pointer">
+              <AlertDialogAction onClick={handleDeleteUser}>
                 Delete User
               </AlertDialogAction>
             </AlertDialogFooter>

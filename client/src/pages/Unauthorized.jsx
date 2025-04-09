@@ -14,7 +14,7 @@ const Unauthorized = () => {
     <AnimatedTransition>
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="text-center max-w-md">
-          <ShieldAlert className="h-20 w-20 text-destructive mx-auto mb-6" />
+          <ShieldAlert className="h-20 w-20 text-red-500 mx-auto mb-6" />
           <h1 className="text-3xl font-bold mb-2">Access Denied</h1>
           <p className="text-muted-foreground mb-6">
             You don't have permission to access this page. Please contact your administrator
