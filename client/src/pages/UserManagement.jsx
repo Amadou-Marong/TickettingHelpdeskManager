@@ -135,6 +135,8 @@ const UserManagement = () => {
         user.role.toLowerCase().includes(searchTerm.toLowerCase())
 
       const matchesDepartment = !selectedDepartment || (user.department || "unassigned") === selectedDepartment
+      
+      return matchesSearch && matchesDepartment
     }
   );
 
@@ -268,24 +270,19 @@ const UserManagement = () => {
             <DropdownMenuContent align="end" className="w-[200px]">
               <DropdownMenuLabel>Filter by Department</DropdownMenuLabel>
               <DropdownMenuSeparator />
-
-              {/* <DropdownMenuLabel>Filter by Department</DropdownMenuLabel>
-              <DropdownMenuSeparator />
               <DropdownMenuItem 
                 className={!selectedDepartment ? "bg-accent text-accent-foreground" : ""}
                 onClick={() => setSelectedDepartment(null)}
-              >
-                All Departments
-              </DropdownMenuItem>
+              >All Departments</DropdownMenuItem>
               {departments.map((dept) => (
-                <DropdownMenuItem 
-                  key={dept}
-                  className={selectedDepartment === dept ? "bg-accent text-accent-foreground" : ""}
-                  onClick={() => setSelectedDepartment(dept)}
-                >
-                  {dept}
-                </DropdownMenuItem>
-              ))} */}
+              <DropdownMenuItem
+                key={dept}
+                className={selectedDepartment === dept ? "bg-accent text-accent-foreground" : ""}
+                onClick={() => setSelectedDepartment(dept)}
+              >
+                {dept}
+              </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
