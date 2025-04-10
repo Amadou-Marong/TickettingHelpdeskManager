@@ -67,7 +67,7 @@ const UserForm = ({ onSubmit }) => {
                 <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                        <Input placeholder="enter password" {...field} />
+                        <Input placeholder="enter password" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>
@@ -81,7 +81,7 @@ const UserForm = ({ onSubmit }) => {
                 <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
-                        <Input placeholder="confirm password" {...field} />
+                        <Input placeholder="confirm password" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>

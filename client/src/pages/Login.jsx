@@ -115,8 +115,10 @@ const Login = () => {
             <div className="text-xs text-center text-muted-foreground">
               <p>Test Accounts:</p>
               <p>Admin: admin@example.com / admin123</p>
+              <p>Supervisor: supervisor@example.com / supervisor123</p>
               <p>Manager: manager@example.com / manager123</p>
               <p>Employee: employee@example.com / employee123</p>
+              <p>Customer: customer@example.com / customer123</p>
             </div>
           </CardFooter>
         </Card>

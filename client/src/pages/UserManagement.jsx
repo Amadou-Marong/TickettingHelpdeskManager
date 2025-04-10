@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import { mockUsers, User, getAllPermissions, getRolePermissions } from '@/utils/authMockData';
 // import { Button } from '@/components/ui/button';
 // import { Input } from '@/components/ui/input';
@@ -38,19 +38,71 @@ import React, { useState } from 'react';
 // import { Checkbox } from '@/components/ui/checkbox';
 // import { useAuth } from '@/contexts/AuthContext';
 // import { useToast } from '@/hooks/use-toast';
-import { Search, UserPlus, Trash2, Edit, Key, Shield, AlertTriangle } from 'lucide-react';
-import { getAllPermissions, getRolePermissions, mockUsers } from '../data/authMockData';
-import { useAuth } from '../contexts/AuthContext';
-import { useToast } from '../hooks/useToast';
-import AnimatedTransition from '../common/AnimatedTransition';
-import Button from '../components/ui/Button';
-import { Input } from '../components/ui/input';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '../components/ui/Dialog';
-import { Checkbox } from '../components/ui/Checkbox';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/Table';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../components/ui/AlertDialog';
-import UserForm from '../components/users/UserForm';
+import {
+  Search,
+  UserPlus,
+  Trash2,
+  Edit,
+  Key,
+  Shield,
+  AlertTriangle,
+  MoreHorizontal,
+  Eye,
+  Ticket,
+  Lock,
+} from "lucide-react";
+import {
+  getAllPermissions,
+  getRolePermissions,
+  mockUsers,
+} from "../data/authMockData";
+import { useAuth } from "../contexts/AuthContext";
+import { useToast } from "../hooks/useToast";
+import AnimatedTransition from "../common/AnimatedTransition";
+import Button from "../components/ui/Button";
+import { Input } from "../components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../components/ui/Dialog";
+import { Checkbox } from "../components/ui/Checkbox";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../components/ui/Table";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/Select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../components/ui/AlertDialog";
+import UserForm from "../components/users/UserForm";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../components/ui/DropdownMenu";
 // import AnimatedTransition from '@/components/common/AnimatedTransition';
 // import UserForm from '@/components/users/UserForm';
 
@@ -58,7 +110,7 @@ const UserManagement = () => {
   const { hasPermission } = useAuth();
   const { toast } = useToast();
   const [users, setUsers] = useState(mockUsers);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
   const [permissionsDialogOpen, setPermissionsDialogOpen] = useState(false);
   const [selectedPermissions, setSelectedPermissions] = useState([]);
@@ -76,11 +128,11 @@ const UserManagement = () => {
 
   const handleRoleChange = (userId, newRole) => {
     setUsers(
-      users.map(user =>
+      users.map((user) =>
         user.id === userId ? { ...user, role: newRole } : user
       )
     );
-    
+
     toast({
       title: "Role updated",
       description: `User role has been updated to ${newRole}`,
@@ -94,14 +146,14 @@ const UserManagement = () => {
 
   const handleDeleteUser = () => {
     if (!userToDelete) return;
-    
-    setUsers(users.filter(user => user.id !== userToDelete.id));
-    
+
+    setUsers(users.filter((user) => user.id !== userToDelete.id));
+
     toast({
       title: "User deleted",
       description: "User has been removed from the system",
     });
-    
+
     setDeleteDialogOpen(false);
     setUserToDelete(null);
   };
@@ -117,7 +169,9 @@ const UserManagement = () => {
     if (checked) {
       setSelectedPermissions([...selectedPermissions, permission]);
     } else {
-      setSelectedPermissions(selectedPermissions.filter(p => p !== permission));
+      setSelectedPermissions(
+        selectedPermissions.filter((p) => p !== permission)
+      );
     }
   };
 
@@ -142,14 +196,14 @@ const UserManagement = () => {
 
     setUsers([...users, newUser]);
     setNewUserDialogOpen(false);
-    
+
     toast({
       title: "User created",
       description: `${newUser.name} has been added as a ${newUser.role}`,
     });
   };
 
-  if (!hasPermission('manage:users')) {
+  if (!hasPermission("manage:users")) {
     return (
       <div className="p-6 md:p-8">
         <h2 className="text-2xl font-bold">Unauthorized</h2>
@@ -165,12 +219,14 @@ const UserManagement = () => {
       <div className="p-6 md:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">User Management</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              User Management
+            </h2>
             <p className="text-muted-foreground">
               Manage users and their permissions
             </p>
           </div>
-          <Button 
+          <Button
             className="w-full sm:w-auto"
             onClick={() => setNewUserDialogOpen(true)}
           >
@@ -209,7 +265,7 @@ const UserManagement = () => {
                     <TableCell>
                       <Select
                         defaultValue={user.role}
-                        onValueChange={(value) => 
+                        onValueChange={(value) =>
                           handleRoleChange(user.id, value)
                         }
                       >
@@ -218,15 +274,18 @@ const UserManagement = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="admin">Admin</SelectItem>
+                          <SelectItem value="supervisor">Supervisor</SelectItem>
                           <SelectItem value="manager">Manager</SelectItem>
+                          <SelectItem value="agent">Agent</SelectItem>
                           <SelectItem value="employee">Employee</SelectItem>
+                          <SelectItem value="customer">Customer</SelectItem>
                         </SelectContent>
                       </Select>
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           size="icon"
                           onClick={() => openPermissionsDialog(user)}
                         >
@@ -235,13 +294,51 @@ const UserManagement = () => {
                         <Button variant="ghost" size="icon">
                           <Edit className="h-4 w-4" />
                         </Button>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           size="icon"
                           onClick={() => confirmDeleteUser(user)}
                         >
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
+
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => {}}>
+                              <Eye className="h-4 w-4 mr-2" />
+                              View profile
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem onClick={() => openPermissionsDialog(user)}>
+                              <Key className="h-4 w-4 mr-2" />
+                              Manage permissions
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem onClick={() => {}}>
+                              <Edit className="h-4 w-4 mr-2" />
+                              Edit user
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem onClick={() => {}}>
+                              <Lock className="h-4 w-4 mr-2" />
+                              Reset password
+                            </DropdownMenuItem>
+
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              className="text-destructive"
+                              onClick={() => confirmDeleteUser(user)}
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              Delete user
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -258,7 +355,10 @@ const UserManagement = () => {
         </div>
 
         {/* User Permissions Dialog */}
-        <Dialog open={permissionsDialogOpen} onOpenChange={setPermissionsDialogOpen}>
+        <Dialog
+          open={permissionsDialogOpen}
+          onOpenChange={setPermissionsDialogOpen}
+        >
           <DialogContent className="max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center">
@@ -273,10 +373,10 @@ const UserManagement = () => {
               <div className="space-y-4">
                 {getAllPermissions().map((permission) => (
                   <div className="flex items-start space-x-2" key={permission}>
-                    <Checkbox 
+                    <Checkbox
                       id={`permission-${permission}`}
                       checked={selectedPermissions.includes(permission)}
-                      onCheckedChange={(checked) => 
+                      onCheckedChange={(checked) =>
                         handlePermissionChange(permission, checked === true)
                       }
                     />
@@ -296,12 +396,13 @@ const UserManagement = () => {
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setPermissionsDialogOpen(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setPermissionsDialogOpen(false)}
+              >
                 Cancel
               </Button>
-              <Button onClick={savePermissions}>
-                Save Permissions
-              </Button>
+              <Button onClick={savePermissions}>Save Permissions</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -331,7 +432,8 @@ const UserManagement = () => {
                 Confirm Deletion
               </AlertDialogTitle>
               <AlertDialogDescription>
-                Are you sure you want to delete {userToDelete?.name}? This action cannot be undone.
+                Are you sure you want to delete {userToDelete?.name}? This
+                action cannot be undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -350,32 +452,32 @@ const UserManagement = () => {
 // Helper function to provide descriptions for permissions
 function getPermissionDescription(permission) {
   const descriptions = {
-    'view:all_tickets': 'Can view all tickets in the system',
-    'create:ticket': 'Can create new tickets',
-    'update:any_ticket': 'Can update any ticket',
-    'delete:any_ticket': 'Can delete any ticket', 
-    'assign:ticket': 'Can assign tickets to others',
-    'manage:users': 'Can manage users and permissions',
-    'view:dashboard': 'Can view dashboard',
-    'view:reports': 'Can view reports',
-    'create:knowledge': 'Can create knowledge base articles',
-    'edit:knowledge': 'Can edit knowledge base articles',
-    'delete:knowledge': 'Can delete knowledge base articles',
-    'manage:settings': 'Can manage system settings',
-    'view:audit_logs': 'Can view system audit logs',
-    'export:data': 'Can export system data',
-    'import:data': 'Can import data into the system',
-    'manage:automations': 'Can manage workflow automations',
-    'view:own_tickets': 'Can view their own tickets',
-    'view:assigned_tickets': 'Can view tickets assigned to them',
-    'update:own_ticket': 'Can update their own tickets',
-    'update:team_ticket': 'Can update tickets for their team',
-    'view:user_activity': 'Can view user activity',
-    'export:tickets': 'Can export tickets data',
-    'comment:ticket': 'Can comment on tickets'
+    "view:all_tickets": "Can view all tickets in the system",
+    "create:ticket": "Can create new tickets",
+    "update:any_ticket": "Can update any ticket",
+    "delete:any_ticket": "Can delete any ticket",
+    "assign:ticket": "Can assign tickets to others",
+    "manage:users": "Can manage users and permissions",
+    "view:dashboard": "Can view dashboard",
+    "view:reports": "Can view reports",
+    "create:knowledge": "Can create knowledge base articles",
+    "edit:knowledge": "Can edit knowledge base articles",
+    "delete:knowledge": "Can delete knowledge base articles",
+    "manage:settings": "Can manage system settings",
+    "view:audit_logs": "Can view system audit logs",
+    "export:data": "Can export system data",
+    "import:data": "Can import data into the system",
+    "manage:automations": "Can manage workflow automations",
+    "view:own_tickets": "Can view their own tickets",
+    "view:assigned_tickets": "Can view tickets assigned to them",
+    "update:own_ticket": "Can update their own tickets",
+    "update:team_ticket": "Can update tickets for their team",
+    "view:user_activity": "Can view user activity",
+    "export:tickets": "Can export tickets data",
+    "comment:ticket": "Can comment on tickets",
   };
-  
-  return descriptions[permission] || 'No description available';
+
+  return descriptions[permission] || "No description available";
 }
 
 export default UserManagement;

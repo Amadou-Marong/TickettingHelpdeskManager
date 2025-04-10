@@ -10,6 +10,14 @@ export const mockUsers = [
     },
     {
       id: 'user-2',
+      email: 'supervisor@example.com',
+      password: 'supervisor123',
+      name: 'Supervisor User',
+      role: 'supervisor',
+      department: 'Support',
+    },
+    {
+      id: 'user-3',
       email: 'manager@example.com',
       password: 'manager123',
       name: 'Manager User',
@@ -17,13 +25,21 @@ export const mockUsers = [
       department: 'Support',
     },
     {
-      id: 'user-3',
+      id: 'user-4',
       email: 'employee@example.com',
       password: 'employee123',
       name: 'Employee User',
       role: 'employee',
       department: 'Customer Support',
     },
+    {
+      id: 'user-5',
+      email: "agent@example.com",
+      password: "agent123",
+      name: "Agent User",
+      role: "agent",
+      department: "IT",
+    }
   ];
   
   // Define permissions for each role
@@ -47,6 +63,18 @@ export const mockUsers = [
       'import:data',
       'manage:automations'
     ],
+    supervisor: [
+      'view:all_tickets',
+      'create:ticket',
+      'update:team_ticket',
+      'assign:ticket',
+      'view:dashboard',
+      'view:reports',
+      'create:knowledge',
+      'edit:knowledge',
+      'view:user_activity',
+      'export:tickets'
+    ],
     manager: [
       'view:all_tickets',
       'create:ticket',
@@ -59,7 +87,28 @@ export const mockUsers = [
       'view:user_activity',
       'export:tickets'
     ],
+    agent: [
+      'view:all_tickets',
+      'create:ticket',
+      'update:team_ticket',
+      'assign:ticket',
+      'view:dashboard',
+      'view:reports',
+      'create:knowledge',
+      'edit:knowledge',
+      'view:user_activity',
+      'export:tickets'
+    ],
     employee: [
+      'view:own_tickets',
+      'view:assigned_tickets',
+      'create:ticket',
+      'update:own_ticket',
+      'view:dashboard',
+      'view:knowledge',
+      'comment:ticket'
+    ],
+    customer: [
       'view:own_tickets',
       'view:assigned_tickets',
       'create:ticket',
