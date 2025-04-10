@@ -50,6 +50,7 @@ import {
   Eye,
   Ticket,
   Lock,
+  Filter,
 } from "lucide-react";
 import {
   getAllPermissions,
@@ -100,6 +101,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/ui/DropdownMenu";
@@ -118,12 +120,22 @@ const UserManagement = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
 
+  const [selectedDepartment, setSelectedDepartment] = useState(null)
+
+  // unique departments
+  const departments = Array.from(new Set(users.map(user => user.department || "unassigned")))
+
+  
+  
   // Filter users based on search term
   const filteredUsers = users.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchTerm.toLowerCase())
+    (user) => {
+      const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.role.toLowerCase().includes(searchTerm.toLowerCase())
+
+      const matchesDepartment = !selectedDepartment || (user.department || "unassigned") === selectedDepartment
+    }
   );
 
   const handleRoleChange = (userId, newRole) => {
@@ -246,6 +258,37 @@ const UserManagement = () => {
           />
         </div>
 
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                <Filter className="mr-2 h-4 w-4" />
+                Filter
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-[200px]">
+              <DropdownMenuLabel>Filter by Department</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+
+              {/* <DropdownMenuLabel>Filter by Department</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem 
+                className={!selectedDepartment ? "bg-accent text-accent-foreground" : ""}
+                onClick={() => setSelectedDepartment(null)}
+              >
+                All Departments
+              </DropdownMenuItem>
+              {departments.map((dept) => (
+                <DropdownMenuItem 
+                  key={dept}
+                  className={selectedDepartment === dept ? "bg-accent text-accent-foreground" : ""}
+                  onClick={() => setSelectedDepartment(dept)}
+                >
+                  {dept}
+                </DropdownMenuItem>
+              ))} */}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
         <div className="rounded-md border border-gray-300">
           <Table>
             <TableHeader>
@@ -253,6 +296,7 @@ const UserManagement = () => {
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Role</TableHead>
+                <TableHead>Department</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -282,6 +326,10 @@ const UserManagement = () => {
                         </SelectContent>
                       </Select>
                     </TableCell>
+
+                    {/* Departments */}
+                    <TableCell>{user.department || 'Unassigned'}</TableCell>
+
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button
